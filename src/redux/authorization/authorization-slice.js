@@ -27,8 +27,8 @@ export const authSlice = createSlice({
       state.registerError = null;
     },
     [register.fulfilled](state, action) {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
+      state.user = { email: action.payload.data.user.email };
+      state.token = action.payload.data.token;
       state.isLoggedIn = true;
       state.registerPending = false;
     },
@@ -41,8 +41,8 @@ export const authSlice = createSlice({
       state.logInError = null;
     },
     [logIn.fulfilled](state, action) {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
+      state.user = { email: action.payload.data.user.email };
+      state.token = action.payload.data.token;
       state.isLoggedIn = true;
       state.logInPending = false;
     },
@@ -66,7 +66,7 @@ export const authSlice = createSlice({
       state.isFetchingCurrentUser = true;
     },
     [fetchCurrentUser.fulfilled](state, action) {
-      state.user = action.payload;
+      state.user = { email: action.payload.data.email };
       state.isFetchingCurrentUser = false;
       state.isLoggedIn = true;
     },

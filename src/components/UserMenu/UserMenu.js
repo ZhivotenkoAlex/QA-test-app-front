@@ -9,7 +9,7 @@ import { logOut } from '../../redux/authorization/authorization-operations';
 export default function UserMenu() {
   const dispatch = useDispatch();
   const userName = useSelector(getUserName);
-  const nameInAvatar = userName[0].toUpperCase();
+  const nameInAvatar = userName?.toUpperCase();
 
   return (
     <div>
