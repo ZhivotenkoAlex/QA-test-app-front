@@ -1,4 +1,5 @@
-import { useEffect, Suspense } from 'react';
+
+import { lazy, useEffect, Suspense } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import PublicRoute from './components/Routes/PublicRoute';
@@ -6,7 +7,14 @@ import PrivateRoute from './components/Routes/PrivateRoute';
 import { getIsFetchingCurrentUser } from './redux/authorization/authorization-selectors';
 import { fetchCurrentUser } from './redux/authorization/authorization-operations';
 import Navigation from './components/Navigation/Navigation';
+// import ContactsPage from './components/ContactsPage/ContactsPage';
 import './App.css';
+
+
+
+const ContactsPage = lazy(() =>
+  import('./views/ContactsPage/ContactsPage'),
+);
 
 function App() {
   const isFetchingCurrentUser = useSelector(getIsFetchingCurrentUser);
@@ -46,7 +54,7 @@ function App() {
               </PrivateRoute>
 
               <PublicRoute path="/contacts">
-                {/* <ContactsPage /> */}
+                <ContactsPage />
               </PublicRoute>
               <Route>
                 <Navigation />
