@@ -1,4 +1,4 @@
-import { useEffect, Suspense } from 'react';
+import { useEffect, Suspense, useState } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import PublicRoute from './components/Routes/PublicRoute';
@@ -7,7 +7,12 @@ import { getIsFetchingCurrentUser } from './redux/authorization/authorization-se
 import { fetchCurrentUser } from './redux/authorization/authorization-operations';
 import './App.css';
 
+import MainPageView from './views/MainPageView/MainPageView';
+import TestPage from './views/TestPage/TestPage';
+
 function App() {
+  const [questions, setQuestions] = useState(null);
+
   const isFetchingCurrentUser = useSelector(getIsFetchingCurrentUser);
   const dispatch = useDispatch();
 
@@ -24,17 +29,25 @@ function App() {
           {/* <AppBar /> */}
           <Switch>
             <Suspense fallback={<p>Loader</p>}>
-              <PrivateRoute path="/" exact redirectTo="/auth">
-                {/* <MainPage /> */}
-              </PrivateRoute>
+              {/* <PrivateRoute path="/" exact redirectTo="/auth">
+                <MainPageView></MainPageView>
+              </PrivateRoute> */}
+
+              <PublicRoute path="/" exact redirectTo="/auth">
+                <MainPageView setQuestions={setQuestions}></MainPageView>
+              </PublicRoute>
 
               <PublicRoute path="/auth" restricted redirectTo="/">
                 {/* <AuthorizationPage /> */}
               </PublicRoute>
 
-              <PrivateRoute path="/test" redirectTo="/auth">
-                {/* <TestPage /> */}
-              </PrivateRoute>
+              {/* <PrivateRoute path="/test" redirectTo="/auth">
+                <TestPage />
+              </PrivateRoute> */}
+
+              <PublicRoute path="/test" redirectTo="/auth">
+                <TestPage questions={questions}></TestPage>
+              </PublicRoute>
 
               <PrivateRoute path="/results" redirectTo="/auth">
                 {/* <ResultsPage /> */}
@@ -48,9 +61,9 @@ function App() {
                 {/* <ContactsPage /> */}
               </PublicRoute>
 
-              <Route>
+              {/* <Route>
                 <Redirect to="/auth" />
-              </Route>
+              </Route> */}
             </Suspense>
           </Switch>
         </>
