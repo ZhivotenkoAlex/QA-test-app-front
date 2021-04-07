@@ -53,7 +53,7 @@ function App() {
                 {/* <InformationPage /> */}
               </PrivateRoute>
 
-              <PublicRoute path="/contacts">
+              <PublicRoute path="/contacts" exact>
                 <ContactsPage />
               </PublicRoute>
               <Route>
