@@ -1,5 +1,6 @@
 import { Link, useRouteMatch } from 'react-router-dom';
 import s from './ContactCard.module.css';
+import DevPhoto from '../../images/dev-photo.png';
 
 
 
@@ -9,7 +10,7 @@ function ContactCard() {
     return (
         <li>
 
-            <img src="" />
+            <img src={DevPhoto} alt="Developer photo" />
             <h3>Name</h3>
             <p>Front-End Developer</p>
 
