@@ -7,9 +7,7 @@ function ContactsPage() {
 
 
     return (
-        <ul className={s.devsList} >
-            <ContactCard />
-        </ul >)
+        <h4 class="teamTitle">Our team</h4>)
 
 }
 
