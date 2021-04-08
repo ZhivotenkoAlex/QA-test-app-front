@@ -4,6 +4,7 @@ import {
   logIn,
   logOut,
   fetchCurrentUser,
+  googleRegister,
 } from './authorization-operations';
 
 const initialState = {

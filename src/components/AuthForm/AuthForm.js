@@ -38,6 +38,7 @@ const AuthForm = ({ onSubmit }) => {
         Email
         <input
           value={email}
+          autoComplete
           type="email"
           onChange={e => setEmail(e.target.value)}
         />

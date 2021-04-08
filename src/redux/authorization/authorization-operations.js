@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'http://localhost:3000/api';
+axios.defaults.baseURL = 'https://safe-bayou-94848.herokuapp.com/api';
 
 const token = {
   set(token) {
@@ -24,6 +24,17 @@ export const register = createAsyncThunk(
       }
 
       return thunkAPI.rejectWithValue(response.statusText);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+export const googleRegister = createAsyncThunk(
+  'auth/googleRegister',
+  async thunkAPI => {
+    try {
+      const { data } = await axios.get('/auth/google');
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

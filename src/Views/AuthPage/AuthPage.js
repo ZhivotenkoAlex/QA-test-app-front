@@ -1,7 +1,9 @@
 import { useDispatch } from 'react-redux';
+
 import {
   logIn,
   register,
+  googleRegister,
 } from '../../redux/authorization/authorization-operations';
 
 import styles from './AuthPage.module.css';
@@ -41,10 +43,14 @@ const AuthPage = () => {
       </div>
       <div className={styles.login_register}>
         <p>You can use your Google Account to authorize:</p>
-        <button>
-          <img src={googleLogo} alt="Google logo" />
-          Google
-        </button>
+
+        <a href="https://safe-bayou-94848.herokuapp.com/api/auth/google">
+          <button onClick={() => dispatch(googleRegister())}>
+            <img src={googleLogo} alt="Google logo" />
+            Google
+          </button>
+        </a>
+
         <p>Or login to our app using e-mail and password:</p>
         <AuthForm onSubmit={handleSubmint} />
       </div>
