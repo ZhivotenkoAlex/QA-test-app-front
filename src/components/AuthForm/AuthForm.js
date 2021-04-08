@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import styles from './AuthForm.module.css';
 
 const AuthForm = ({ onSubmit }) => {
   const [email, setEmail] = useState('');
@@ -33,31 +34,56 @@ const AuthForm = ({ onSubmit }) => {
     return;
   };
   return (
-    <form>
-      <label>
-        Email
+    <form className={styles.formLogin}>
+      <div className={styles.formField}>
         <input
+          className={styles.formInput}
           value={email}
-          autoComplete
+          name="mail"
+          id="mail"
+          autoComplete="true"
           type="email"
+          placeholder="E-mail"
           onChange={e => setEmail(e.target.value)}
         />
-      </label>
-      <label>
-        Password
+        <label
+          className={`${styles.formLabel} ${styles.formEmail}`}
+          for="mail"
+        ></label>
+      </div>
+      <div className={styles.formField}>
         <input
+          className={styles.formInput}
           value={password}
           type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
           onChange={e => setPassword(e.target.value)}
         />
-      </label>
-
-      <button name="signIn" type="button" onClick={e => handleFormSubmit(e)}>
-        Sign in
-      </button>
-      <button name="signUp" type="button" onClick={e => handleFormSubmit(e)}>
-        Sign up
-      </button>
+        <label
+          className={`${styles.formLabel} ${styles.formPassword}`}
+          for="password"
+        ></label>
+      </div>
+      <div className={styles.signButtons}>
+        <button
+          className={`${styles.button} ${styles.signin}`}
+          name="signIn"
+          type="button"
+          onClick={e => handleFormSubmit(e)}
+        >
+          Sign in
+        </button>
+        <button
+          className={styles.button}
+          name="signUp"
+          type="button"
+          onClick={e => handleFormSubmit(e)}
+        >
+          Sign up
+        </button>
+      </div>
     </form>
   );
 };
