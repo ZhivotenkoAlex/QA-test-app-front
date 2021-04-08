@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import CardView from './CardView';
 import s from './TestPage.module.css';
@@ -17,14 +18,29 @@ const TestPage = ({ questions }) => {
     setQuestionIndex(questionIndex + 1);
   };
 
+  const handleFinishClick = () => {
+    isCompleted
+      ? console.log('Відправляємо дані на бек-енд')
+      : console.log('Немає всіх відповідей');
+  };
+
   return (
     <div style={s.container}>
-      <button>Завершити тест</button>
+      <Link
+        onClick={handleFinishClick}
+        to={{
+          pathname: isCompleted ? '/results' : '/',
+        }}
+      >
+        Завершити тест
+      </Link>
 
       <CardView
-        question={questions[questionIndex]}
+        questions={questions}
         answers={answers}
         setAnswers={setAnswers}
+        questionIndex={questionIndex}
+        setIsCompleted={setIsCompleted}
       />
 
       {Boolean(questionIndex) && (
