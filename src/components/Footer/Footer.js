@@ -4,8 +4,8 @@ import sprite from '../../img/sprite.svg';
 const Footer = () => (
   <footer className={styles.footer}>
     <span className={styles.footerText}>
-      <span className={styles.copyright}> © </span>
-      2021 | All rights Reserved | Developed with&nbsp;
+      <span className={styles.copyright}>©</span>&nbsp; 2021 | All rights
+      Reserved | Developed with&nbsp;
       <svg className={styles.footerIcon} width="17" height="17">
         <use href={sprite + '#heart'}></use>
       </svg>
