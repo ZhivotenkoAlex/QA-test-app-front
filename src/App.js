@@ -5,10 +5,14 @@ import PublicRoute from './components/Routes/PublicRoute';
 import PrivateRoute from './components/Routes/PrivateRoute';
 import { getIsFetchingCurrentUser } from './redux/authorization/authorization-selectors';
 import { fetchCurrentUser } from './redux/authorization/authorization-operations';
-import './App.css';
+import Navigation from './components/Navigation/Navigation';
+import ResultsPage from './components/Results/Results';
+import Footer from './components/Footer';
 
 import MainPageView from './views/MainPageView/MainPageView';
 import TestPage from './views/TestPage/TestPage';
+
+import './App.css';
 
 function App() {
   const [questions, setQuestions] = useState(null);
@@ -49,9 +53,9 @@ function App() {
                 <TestPage questions={questions}></TestPage>
               </PublicRoute>
 
-              <PrivateRoute path="/results" redirectTo="/auth">
-                {/* <ResultsPage /> */}
-              </PrivateRoute>
+              <PublicRoute path="/results" redirectTo="/auth">
+                {<ResultsPage />}
+              </PublicRoute>
 
               <PrivateRoute path="/useful-info" redirectTo="/auth">
                 {/* <InformationPage /> */}
@@ -61,6 +65,10 @@ function App() {
                 {/* <ContactsPage /> */}
               </PublicRoute>
 
+              <Route>
+                <Navigation />
+              </Route>
+
               {/* <Route>
                 <Redirect to="/auth" />
               </Route> */}
@@ -68,6 +76,7 @@ function App() {
           </Switch>
         </>
       )}
+      <Footer />
     </>
   );
 }
