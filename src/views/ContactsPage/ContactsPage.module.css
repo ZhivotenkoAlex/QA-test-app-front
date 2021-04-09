@@ -48,6 +48,7 @@
   justify-content: center;
   flex-wrap: wrap;
   margin: -10px;
+  list-style: none;
 }
 .teamItem {
   margin: 10px;
