@@ -27,7 +27,7 @@ export default function UserMenu() {
         </NavLink>
         <NavLink
           exact
-          to="/usefulinfo"
+          to="/usefull-info"
           className={s.link}
           activeClassName={s.activeLink}
         >
