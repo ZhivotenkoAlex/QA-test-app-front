@@ -81,16 +81,13 @@
 .button:focus,
 .button:hover {
   transform: scale(1.06);
+  color: var(--primaryWhiteColor);
+  background-color: var(--OrangeColor);
+  border: 1px solid var(--OrangeColor);
 }
 
 .signin {
   margin-right: 20px;
-}
-
-.buttonActive {
-  color: var(--primaryWhiteColor);
-  background-color: var(--OrangeColor);
-  border: 1px solid var(--OrangeColor);
 }
 
 @media screen and (max-width: 767px) {

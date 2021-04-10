@@ -98,13 +98,9 @@
   justify-content: center;
   width: inherit;
   height: inherit;
-  /* margin-bottom: 30px;
-  padding: 17px 38px;
-  width: 159px;
-  height: 51px; */
 
   background-color: #fafafa;
-  /* background-image: url(../. ./); */
+  background-image: url(../../img/google.png);
   background-size: 84px 18px;
   background-repeat: no-repeat;
   background-position: center center;

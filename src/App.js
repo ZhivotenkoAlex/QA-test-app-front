@@ -1,6 +1,8 @@
 import { useEffect, Suspense } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { ToastContainer, Flip } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import PublicRoute from './components/Routes/PublicRoute';
 import PrivateRoute from './components/Routes/PrivateRoute';
 import { getIsFetchingCurrentUser } from './redux/authorization/authorization-selectors';
@@ -57,6 +59,7 @@ function App() {
               </Route>
             </Suspense>
           </Switch>
+          <ToastContainer transition={Flip} />
         </>
       )}
     </>

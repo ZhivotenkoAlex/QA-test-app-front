@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import styles from './AuthForm.module.css';
 
 const AuthForm = ({ onSubmit }) => {
@@ -8,11 +10,27 @@ const AuthForm = ({ onSubmit }) => {
   // empty field validation function
   const formValidation = () => {
     if (email === '') {
-      alert('Enter email');
+      toast.error('Please enter email!', {
+        position: 'top-center',
+        autoClose: 1800,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       return false;
     }
     if (password === '') {
-      alert('Enter password');
+      toast.error('Please enter password!', {
+        position: 'top-center',
+        autoClose: 1800,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       return false;
     }
     return true;

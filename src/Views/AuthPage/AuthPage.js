@@ -7,22 +7,21 @@ import {
 } from '../../redux/authorization/authorization-operations';
 
 import styles from './AuthPage.module.css';
-import googleLogo from './images/Group.svg';
 import AuthForm from '../../components/AuthForm';
 
 const AuthPage = () => {
   const dispatch = useDispatch();
 
   // submit function
-  const handleSubmint = async (credentials, tegetName) => {
-    switch (tegetName) {
+  const handleSubmint = async (credentials, targetName) => {
+    switch (targetName) {
       case 'signIn':
-        console.log(tegetName, credentials.email, credentials.password);
+        console.log(targetName, credentials.email, credentials.password);
         await dispatch(logIn(credentials));
 
         break;
       case 'signUp':
-        console.log(tegetName, credentials.email, credentials.password);
+        console.log(targetName, credentials.email, credentials.password);
         await dispatch(register(credentials));
 
         break;
@@ -54,16 +53,7 @@ const AuthPage = () => {
             className={styles.buttonGoogleLink}
             href="http://localhost:3000/api/auth/google"
           >
-            <button className={styles.buttonGoogle}>
-              <img
-                src={googleLogo}
-                alt="Google logo"
-                width="18px"
-                height="18px"
-              />
-              &nbsp;
-              <span>Google</span>
-            </button>
+            <button className={styles.buttonGoogle}></button>
           </a>
 
           <p className={styles.authorizeTitle}>
