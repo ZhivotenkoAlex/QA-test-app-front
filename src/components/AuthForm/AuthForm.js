@@ -66,7 +66,7 @@ const AuthForm = ({ onSubmit }) => {
         />
         <label
           className={`${styles.formLabel} ${styles.formEmail}`}
-          for="mail"
+          htmlFor="mail"
         ></label>
       </div>
       <div className={styles.formField}>
@@ -81,7 +81,7 @@ const AuthForm = ({ onSubmit }) => {
         />
         <label
           className={`${styles.formLabel} ${styles.formPassword}`}
-          for="password"
+          htmlFor="password"
         ></label>
       </div>
       <div className={styles.signButtons}>

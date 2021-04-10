@@ -1,14 +1,14 @@
 import { useDispatch } from 'react-redux';
+import { Route } from 'react-router-dom';
 
 import {
   logIn,
   register,
-  googleRegister,
 } from '../../redux/authorization/authorization-operations';
 
 import styles from './AuthPage.module.css';
 import AuthForm from '../../components/AuthForm';
-
+import GoogleRedirect from '../../components/GoogleRedirect';
 const AuthPage = () => {
   const dispatch = useDispatch();
 
@@ -51,7 +51,7 @@ const AuthPage = () => {
           {/* <button onClick={() => dispatch(googleRegister())}> */}
           <a
             className={styles.buttonGoogleLink}
-            href="http://localhost:3000/api/auth/google"
+            href="https://safe-bayou-94848.herokuapp.com/api/auth/google"
           >
             <button className={styles.buttonGoogle}></button>
           </a>
@@ -62,6 +62,9 @@ const AuthPage = () => {
           <AuthForm onSubmit={handleSubmint} />
         </div>
       </div>
+      <Route path="/auth/google">
+        <GoogleRedirect />
+      </Route>
     </div>
   );
 };
