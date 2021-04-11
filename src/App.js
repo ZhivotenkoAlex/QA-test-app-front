@@ -49,13 +49,9 @@ function App() {
         <Loader />
       ) : (
         <>
-          {/* <AppBar /> */}
+          <Navigation />
           <Switch>
             <Suspense fallback={<Loader />}>
-              <Route>
-                <Navigation />
-              </Route>
-
               {/* <PrivateRoute path="/" exact redirectTo="/auth">
                 <MainPageView></MainPageView>
               </PrivateRoute> */}
