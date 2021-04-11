@@ -15,7 +15,11 @@ import TestPage from './views/TestPage/TestPage';
 import './App.css';
 
 function App() {
-  const [questions, setQuestions] = useState(null);
+  const [typeQuestions, setTypeQuestions] = useState(null);
+  const [answers, setAnswers] = useState([]);
+
+  console.log('Відповід:');
+  console.log(answers);
 
   const isFetchingCurrentUser = useSelector(getIsFetchingCurrentUser);
   const dispatch = useDispatch();
@@ -33,12 +37,18 @@ function App() {
           {/* <AppBar /> */}
           <Switch>
             <Suspense fallback={<p>Loader</p>}>
+              <Route>
+                <Navigation />
+              </Route>
+
               {/* <PrivateRoute path="/" exact redirectTo="/auth">
                 <MainPageView></MainPageView>
               </PrivateRoute> */}
 
               <PublicRoute path="/" exact redirectTo="/auth">
-                <MainPageView setQuestions={setQuestions}></MainPageView>
+                <MainPageView
+                  setTypeQuestions={setTypeQuestions}
+                ></MainPageView>
               </PublicRoute>
 
               <PublicRoute path="/auth" restricted redirectTo="/">
@@ -50,11 +60,20 @@ function App() {
               </PrivateRoute> */}
 
               <PublicRoute path="/test" redirectTo="/auth">
-                <TestPage questions={questions}></TestPage>
+                <TestPage
+                  typeQuestions={typeQuestions}
+                  setTypeQuestions={setTypeQuestions}
+                  answers={answers}
+                  setAnswers={setAnswers}
+                ></TestPage>
+              </PublicRoute>
+
+              <PublicRoute path="/results-test" redirectTo="/auth">
+                <ResultsPage />
               </PublicRoute>
 
               <PublicRoute path="/results" redirectTo="/auth">
-                {<ResultsPage />}
+                <ResultsPage />
               </PublicRoute>
 
               <PrivateRoute path="/useful-info" redirectTo="/auth">
@@ -64,10 +83,6 @@ function App() {
               <PublicRoute path="/contacts">
                 {/* <ContactsPage /> */}
               </PublicRoute>
-
-              <Route>
-                <Navigation />
-              </Route>
 
               {/* <Route>
                 <Redirect to="/auth" />

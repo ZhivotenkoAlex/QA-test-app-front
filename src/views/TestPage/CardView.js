@@ -10,22 +10,23 @@ const CardView = ({
   let isUpdated;
 
   const handleChoise = e => {
-    updateExistingAnswers(e.target.value);
+    const currentAnswer = e.target.value;
+    updateExistingAnswers(currentAnswer);
 
     if (!isUpdated) {
-      addNewAnswer(e.target.value);
+      addNewAnswer(currentAnswer);
     }
 
     chekCompleted();
   };
 
-  const updateExistingAnswers = value => {
+  const updateExistingAnswers = currentAnswer => {
     const updatedAnswers = [...answers];
     isUpdated = false;
 
     answers.map((answer, index) => {
       if (answer.questionId === questions[questionIndex].questionId) {
-        updatedAnswers[index].answer = value;
+        updatedAnswers[index].answer = currentAnswer;
         setAnswers([...updatedAnswers]);
         isUpdated = true;
         return;
@@ -33,12 +34,12 @@ const CardView = ({
     });
   };
 
-  const addNewAnswer = value => {
+  const addNewAnswer = currentAnswer => {
     setAnswers([
       ...answers,
       {
         questionId: questions[questionIndex].questionId,
-        answer: value,
+        answer: currentAnswer,
       },
     ]);
   };
@@ -50,35 +51,56 @@ const CardView = ({
   };
 
   return (
-    <div style={s.container}>
-      {questions.map((question, index) => (
-        <div className={index !== questionIndex && s.hide}>
-          <div key={question.questionId}>{question.question}</div>
-          {}
-          {question.answers.map(answer => (
-            <label key={answer}>
-              <input
-                type="radio"
-                name={`answer-${question.questionId}`}
-                value={answer}
-                onClick={handleChoise}
-              />
-              {answer}
-            </label>
-          ))}
-          {}
-          <label>
-            <input
-              type="radio"
-              name={`answer-${question.questionId}`}
-              value="I don't know"
-              onClick={handleChoise}
-            />
-            I don't know
-          </label>
-          ;
-        </div>
-      ))}
+    <div className={s.testingField}>
+      <p className={s.testingQuestion}>
+        Question <span className={s.testingAnswers}>{questionIndex + 1}</span> /
+        {questions.length}
+      </p>
+
+      <h4 className={s.testingQuestionText}>
+        {questions[questionIndex].question}
+      </h4>
+
+      <hr className={s.testingLine} />
+
+      <ul action="">
+        {questions.map((question, index) => (
+          <li
+            key={question.questionId}
+            className={`${index !== questionIndex ? s.hide : ''}`}
+          >
+            <ul action="">
+              {question.answers.map(answer => (
+                <li key={answer}>
+                  <label>
+                    <input
+                      className={s.testingInput}
+                      type="radio"
+                      name={`answer-${question.questionId}`}
+                      value={answer}
+                      onClick={handleChoise}
+                    />
+                    <span className={s.answerText}>{answer}</span>
+                  </label>
+                </li>
+              ))}
+
+              <li key="I don't know" className={s.idontknow}>
+                <label>
+                  <input
+                    className={s.testingInput}
+                    type="radio"
+                    name={`answer-${question.questionId}`}
+                    value="I don't know"
+                    onClick={handleChoise}
+                  />
+                  <span className={s.answerText}>I don't know</span>
+                </label>
+              </li>
+            </ul>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

@@ -1,48 +1,64 @@
 import { Link } from 'react-router-dom';
 
+import sprite from '../../img/sprite.svg';
 import { testTypes } from './constants';
 import s from './MainPageView.module.css';
 
-import { techQuestions } from '../../temp/tech-questions.json';
+// import { techQuestions } from '../../temp/tech-questions.json';
 import { theoryQuestions } from '../../temp/theory-questions.json';
 
-const MainPageView = ({ setQuestions }) => {
-  async function fetchTrendingMovies(page) {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/trending/movie/week?api_key=7e78d9d0b80a5a9938ce5aba09bf2c47&page=${page}`,
-    );
-
-    return await response.json();
-  }
-
-  const fetchQuestions = e => {
-    if (e.target.id === testTypes.tech) {
-      setQuestions(techQuestions);
-    }
-
-    setQuestions(theoryQuestions);
+const MainPageView = ({ setTypeQuestions }) => {
+  const hanldeTestClick = e => {
+    setTypeQuestions(e.currentTarget.id);
+    console.log(e.currentTarget);
   };
 
   return (
-    <div style={s.container}>
-      <Link
-        id={testTypes.tech}
-        onClick={fetchQuestions}
-        to={{
-          pathname: `/test`,
-        }}
-      >
-        QA tech
-      </Link>
+    <div>
+      <section className={`${s.home} ${s.container}`}>
+        <h4 className={s.homeTitle}>
+          “Regression testing. What is it? If the system compiles, that's good,
+          if it boots, that's great!”
+        </h4>
 
-      <Link
-        id={testTypes.theory}
-        to={{
-          pathname: `/test`,
-        }}
-      >
-        Theory
-      </Link>
+        <hr className={s.homeLine} />
+        <p className={s.homeName}>Linus Torvalds</p>
+        <p className={s.homeCompany}>Linux kernel creator, hacker, 1969</p>
+
+        <Link
+          id={testTypes.tech}
+          className={`${s.homeButton} ${s.training}`}
+          onClick={hanldeTestClick}
+          to={{
+            pathname: `/test`,
+          }}
+        >
+          QA technical
+          <br />
+          training
+          <br />
+          <svg className={s.arrow} width="24" height="24">
+            <use href={sprite + '#arrow'}></use>
+          </svg>
+        </Link>
+
+        <Link
+          id={testTypes.theory}
+          className={`${s.homeButton} ${s.theory}`}
+          onClick={hanldeTestClick}
+          to={{
+            pathname: `/test`,
+          }}
+        >
+          Testing
+          <br />
+          theory
+          <br />
+          <svg className={s.arrow} width="24" height="24">
+            <use href={sprite + '#arrow'}></use>
+          </svg>
+        </Link>
+      </section>
     </div>
   );
 };
