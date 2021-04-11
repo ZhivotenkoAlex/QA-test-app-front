@@ -12,6 +12,8 @@ import './App.css';
 
 
 
+
+
 const ContactsPage = lazy(() =>
   import('./views/ContactsPage/ContactsPage'),
 );
@@ -53,7 +55,7 @@ function App() {
                 {/* <InformationPage /> */}
               </PrivateRoute>
 
-              <PublicRoute path="/contacts" exact>
+              <PublicRoute path="/contacts">
                 <ContactsPage />
               </PublicRoute>
               <Route>
