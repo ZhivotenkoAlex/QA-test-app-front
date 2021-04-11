@@ -8,7 +8,7 @@ import {
 } from './authorization-operations';
 
 const initialState = {
-  user: { name: null, email: null },
+  user: { email: null },
   token: null,
   isFetchingCurrentUser: false,
   isLoggedIn: false,
@@ -70,7 +70,7 @@ export const authSlice = createSlice({
       state.logOutPending = true;
     },
     [logOut.fulfilled](state) {
-      state.user = { name: null, email: null };
+      state.user = { email: null };
       state.token = null;
       state.isLoggedIn = false;
       state.logOutPending = false;

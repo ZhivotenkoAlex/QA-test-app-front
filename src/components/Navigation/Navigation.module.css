@@ -1,0 +1,38 @@
+.section {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e2e3e5;
+  padding: 26px 20px 26px 20px;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  padding-right: 0;
+  margin-left: auto;
+}
+
+.link {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.14;
+  letter-spacing: 0.02em;
+
+  color: #000000;
+}
+
+.activeLink {
+  composes: link;
+
+  border-bottom: 1px solid #ff6b09;
+}
+
+.linkNav {
+  /* i */
+}
+
+.activeLinkNav {
+  /* i */
+}

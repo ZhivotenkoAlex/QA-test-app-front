@@ -10,7 +10,13 @@ import { fetchCurrentUser } from './redux/authorization/authorization-operations
 import Navigation from './components/Navigation/Navigation';
 import AuthPage from './Views/AuthPage';
 import './App.css';
+import ResultsPage from './components/Results/Results';
+import Footer from './components/Footer';
+import UsefullInfo from './components/UsefullInfo/UsefullInfo'
 
+import { books, resources } from './components/UsefullInfo/usefullMaterials.json';
+
+import './App.css';
 function App() {
   const isFetchingCurrentUser = useSelector(getIsFetchingCurrentUser);
   const dispatch = useDispatch();
@@ -40,12 +46,13 @@ function App() {
                 {/* <TestPage /> */}
               </PrivateRoute>
 
-              <PrivateRoute path="/results" redirectTo="/auth">
-                {/* <ResultsPage /> */}
-              </PrivateRoute>
+              <PublicRoute path="/results" redirectTo="/auth"> 
+               
+                {<ResultsPage />}
+              </PublicRoute>
 
-              <PrivateRoute path="/useful-info" redirectTo="/auth">
-                {/* <InformationPage /> */}
+              <PrivateRoute path="/usefull-info" redirectTo="/auth">
+                <UsefullInfo books={books} resources={resources} />
               </PrivateRoute>
 
               <PublicRoute path="/contacts">
@@ -62,6 +69,7 @@ function App() {
           <ToastContainer transition={Flip} />
         </>
       )}
+      <Footer />
     </>
   );
 }

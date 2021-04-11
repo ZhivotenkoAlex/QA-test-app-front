@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.avatar {
+  margin-right: 4px;
+}
+
+.name {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.14;
+  letter-spacing: 0.02em;
+  margin-left: 30px;
+}
+
+.link {
+  display: inline-block;
+  margin-right: 85px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+
+  color: #000000;
+}
+
+/* ?margin-left: auto */
+.link:first-child {
+  margin-left: 491px;
+}
+
+.activeLink {
+  composes: link;
+  border-bottom: 1px solid #ff6b09;
+}
+
+.button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 26px 20px 26px 20px;
+  border-left: 1px solid #e2e3e5;
+  cursor: pointer;
+}
