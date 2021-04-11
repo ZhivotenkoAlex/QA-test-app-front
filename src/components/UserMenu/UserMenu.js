@@ -9,8 +9,10 @@ import signOut from './sign-out.svg';
 
 export default function UserMenu() {
   const dispatch = useDispatch();
+
   // const userName = useSelector(getUserName);
   // const nameInAvatar = userName[0].toUpperCase();
+
   const nameInAvatar = 'D';
   const userName = 'Dmitri';
 
