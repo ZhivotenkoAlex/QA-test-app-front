@@ -4,10 +4,11 @@ import {
   logIn,
   logOut,
   fetchCurrentUser,
+  googleRegister,
 } from './authorization-operations';
 
 const initialState = {
-  user: { name: null, email: null },
+  user: { email: null },
   token: null,
   isFetchingCurrentUser: false,
   isLoggedIn: false,
@@ -27,8 +28,8 @@ export const authSlice = createSlice({
       state.registerError = null;
     },
     [register.fulfilled](state, action) {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
+      state.user = { email: action.payload.data.user.email };
+      state.token = action.payload.data.token;
       state.isLoggedIn = true;
       state.registerPending = false;
     },
@@ -36,13 +37,28 @@ export const authSlice = createSlice({
       state.registerPending = false;
       state.registerError = action.payload;
     },
+    [googleRegister.pending](state) {
+      state.registerPending = true;
+      state.registerError = null;
+    },
+    [googleRegister.fulfilled](state, action) {
+      state.user = { email: action.payload.data.email };
+      state.token = action.payload.token;
+      state.isLoggedIn = true;
+      state.registerPending = false;
+    },
+    [googleRegister.rejected](state, action) {
+      state.registerPending = false;
+      state.registerError = action.payload;
+    },
+
     [logIn.pending](state) {
       state.logInPending = true;
       state.logInError = null;
     },
     [logIn.fulfilled](state, action) {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
+      state.user = { email: action.payload.data.user.email };
+      state.token = action.payload.data.token;
       state.isLoggedIn = true;
       state.logInPending = false;
     },
@@ -54,7 +70,7 @@ export const authSlice = createSlice({
       state.logOutPending = true;
     },
     [logOut.fulfilled](state) {
-      state.user = { name: null, email: null };
+      state.user = { email: null };
       state.token = null;
       state.isLoggedIn = false;
       state.logOutPending = false;
@@ -66,7 +82,7 @@ export const authSlice = createSlice({
       state.isFetchingCurrentUser = true;
     },
     [fetchCurrentUser.fulfilled](state, action) {
-      state.user = action.payload;
+      state.user = { email: action.payload.data.email };
       state.isFetchingCurrentUser = false;
       state.isLoggedIn = true;
     },
