@@ -53,7 +53,7 @@ const CardView = ({
   return (
     <div className={s.testingField}>
       <p className={s.testingQuestion}>
-        Question <span className={s.testingAnswers}>{questionIndex + 1}</span> /
+        Question <span className={s.testingAnswers}>{questionIndex + 1}</span><span className={s.slash}>/</span>
         {questions.length}
       </p>
 
@@ -71,7 +71,7 @@ const CardView = ({
           >
             <ul action="">
               {question.answers.map(answer => (
-                <li key={answer}>
+                <li key={answer} className={s.item}>
                   <label>
                     <input
                       className={s.testingInput}

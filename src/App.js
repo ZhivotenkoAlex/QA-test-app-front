@@ -19,8 +19,10 @@ import {
   resources,
 } from './components/UsefullInfo/usefullMaterials.json';
 
-import MainPageView from './views/MainPageView/MainPageView';
-import TestPage from './views/TestPage/TestPage';
+import MainPageView from './Views/MainPageView/MainPageView';
+import TestPage from './Views/TestPage/TestPage';
+// import MainPageView from './views/MainPageView/MainPageView';
+// import TestPage from './views/TestPage/TestPage';
 
 import './App.css';
 
