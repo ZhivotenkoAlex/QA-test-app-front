@@ -1,4 +1,4 @@
-// import { Link, useRouteMatch } from 'react-router-dom';
+
 import React, { Component } from 'react';
 import s from './ContactsPage.module.css';
 import ContactCard from '../ContactCard/ContactCard'
