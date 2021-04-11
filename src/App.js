@@ -1,30 +1,33 @@
-import { useEffect, Suspense, useState } from 'react';
+import { useEffect, Suspense, useState, lazy } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { ToastContainer, Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Loader from './components/Loader/Loader';
 import PublicRoute from './components/Routes/PublicRoute';
 import PrivateRoute from './components/Routes/PrivateRoute';
 import { getIsFetchingCurrentUser } from './redux/authorization/authorization-selectors';
 import { fetchCurrentUser } from './redux/authorization/authorization-operations';
 import Navigation from './components/Navigation/Navigation';
-import AuthPage from './views/AuthPage';
 import './App.css';
 import ResultsPage from './components/Results/Results';
 import Footer from './components/Footer';
 import UsefullInfo from './components/UsefullInfo/UsefullInfo';
+import TestPage from './Views/TestPage/TestPage';
 
 import {
   books,
   resources,
 } from './components/UsefullInfo/usefullMaterials.json';
 
-import MainPageView from './Views/MainPageView/MainPageView';
-import TestPage from './Views/TestPage/TestPage';
-// import MainPageView from './views/MainPageView/MainPageView';
-// import TestPage from './views/TestPage/TestPage';
-
-import './App.css';
+const MainPageView = lazy(() =>
+  import(
+    './Views/MainPageView/MainPageView' /* webpackChunkName: "main-page" */
+  ),
+);
+const AuthPage = lazy(() =>
+  import('./Views/AuthPage' /* webpackChunkName: "auth-page" */),
+);
 
 function App() {
   const [typeQuestions, setTypeQuestions] = useState(null);
@@ -43,12 +46,12 @@ function App() {
   return (
     <>
       {isFetchingCurrentUser ? (
-        <p>Loader</p>
+        <Loader />
       ) : (
         <>
           {/* <AppBar /> */}
           <Switch>
-            <Suspense fallback={<p>Loader</p>}>
+            <Suspense fallback={<Loader />}>
               <Route>
                 <Navigation />
               </Route>
@@ -102,9 +105,9 @@ function App() {
             </Suspense>
           </Switch>
           <ToastContainer transition={Flip} />
+          <Footer />
         </>
       )}
-      <Footer />
     </>
   );
 }
