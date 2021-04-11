@@ -75,6 +75,10 @@
   color: var(--OrangeColor);
 }
 
+.slash {
+  margin: 0 3px;
+}
+
 .testingQuestionText {
   font-weight: 700;
   text-align: center;
@@ -94,6 +98,10 @@
   font-weight: 500;
   letter-spacing: 0.02em;
   margin-left: 20px;
+}
+
+.item {
+  margin-bottom: 15px;
 }
 
 .idontknow {
@@ -189,6 +197,11 @@
   .testingField {
     padding: 40px 20px 60px 20px;
   }
+
+  .testingAnswers {
+    font-size: 11px;
+  }
+
   .testingQuestion {
     font-size: 10px;
     line-height: 1.2;
@@ -251,6 +264,15 @@
   .testingField {
     padding: 50px 37px 58px 57px;
   }
+
+  .testingAnswers {
+    font-size: 16px;
+  }
+
+  .slash {
+    margin: 0 5px;
+  }
+
   .testingQuestion {
     font-size: 14px;
     line-height: 1.2;
