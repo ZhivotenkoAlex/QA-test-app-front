@@ -1,13 +1,23 @@
 import { useEffect, Suspense, useState } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { ToastContainer, Flip } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import PublicRoute from './components/Routes/PublicRoute';
 import PrivateRoute from './components/Routes/PrivateRoute';
 import { getIsFetchingCurrentUser } from './redux/authorization/authorization-selectors';
 import { fetchCurrentUser } from './redux/authorization/authorization-operations';
 import Navigation from './components/Navigation/Navigation';
+import AuthPage from './Views/AuthPage';
+import './App.css';
 import ResultsPage from './components/Results/Results';
 import Footer from './components/Footer';
+import UsefullInfo from './components/UsefullInfo/UsefullInfo';
+
+import {
+  books,
+  resources,
+} from './components/UsefullInfo/usefullMaterials.json';
 
 import MainPageView from './views/MainPageView/MainPageView';
 import TestPage from './views/TestPage/TestPage';
@@ -52,7 +62,7 @@ function App() {
               </PublicRoute>
 
               <PublicRoute path="/auth" restricted redirectTo="/">
-                {/* <AuthorizationPage /> */}
+                <AuthPage />
               </PublicRoute>
 
               {/* <PrivateRoute path="/test" redirectTo="/auth">
@@ -73,11 +83,11 @@ function App() {
               </PublicRoute>
 
               <PublicRoute path="/results" redirectTo="/auth">
-                <ResultsPage />
+                {<ResultsPage />}
               </PublicRoute>
 
-              <PrivateRoute path="/useful-info" redirectTo="/auth">
-                {/* <InformationPage /> */}
+              <PrivateRoute path="/usefull-info" redirectTo="/auth">
+                <UsefullInfo books={books} resources={resources} />
               </PrivateRoute>
 
               <PublicRoute path="/contacts">
@@ -89,6 +99,7 @@ function App() {
               </Route> */}
             </Suspense>
           </Switch>
+          <ToastContainer transition={Flip} />
         </>
       )}
       <Footer />
