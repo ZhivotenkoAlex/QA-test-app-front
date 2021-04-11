@@ -1,4 +1,4 @@
-import { useEffect, Suspense } from 'react';
+import { useEffect, Suspense, useState } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { ToastContainer, Flip } from 'react-toastify';
@@ -12,12 +12,25 @@ import AuthPage from './Views/AuthPage';
 import './App.css';
 import ResultsPage from './components/Results/Results';
 import Footer from './components/Footer';
-import UsefullInfo from './components/UsefullInfo/UsefullInfo'
+import UsefullInfo from './components/UsefullInfo/UsefullInfo';
 
-import { books, resources } from './components/UsefullInfo/usefullMaterials.json';
+import {
+  books,
+  resources,
+} from './components/UsefullInfo/usefullMaterials.json';
+
+import MainPageView from './views/MainPageView/MainPageView';
+import TestPage from './views/TestPage/TestPage';
 
 import './App.css';
+
 function App() {
+  const [typeQuestions, setTypeQuestions] = useState(null);
+  const [answers, setAnswers] = useState([]);
+
+  console.log('Відповід:');
+  console.log(answers);
+
   const isFetchingCurrentUser = useSelector(getIsFetchingCurrentUser);
   const dispatch = useDispatch();
 
@@ -34,20 +47,42 @@ function App() {
           {/* <AppBar /> */}
           <Switch>
             <Suspense fallback={<p>Loader</p>}>
-              <PrivateRoute path="/" exact redirectTo="/auth">
-                {/* <MainPage /> */}
-              </PrivateRoute>
+              <Route>
+                <Navigation />
+              </Route>
+
+              {/* <PrivateRoute path="/" exact redirectTo="/auth">
+                <MainPageView></MainPageView>
+              </PrivateRoute> */}
+
+              <PublicRoute path="/" exact redirectTo="/auth">
+                <MainPageView
+                  setTypeQuestions={setTypeQuestions}
+                ></MainPageView>
+              </PublicRoute>
 
               <PublicRoute path="/auth" restricted redirectTo="/">
                 <AuthPage />
               </PublicRoute>
 
-              <PrivateRoute path="/test" redirectTo="/auth">
-                {/* <TestPage /> */}
-              </PrivateRoute>
+              {/* <PrivateRoute path="/test" redirectTo="/auth">
+                <TestPage />
+              </PrivateRoute> */}
 
-              <PublicRoute path="/results" redirectTo="/auth"> 
-               
+              <PublicRoute path="/test" redirectTo="/auth">
+                <TestPage
+                  typeQuestions={typeQuestions}
+                  setTypeQuestions={setTypeQuestions}
+                  answers={answers}
+                  setAnswers={setAnswers}
+                ></TestPage>
+              </PublicRoute>
+
+              <PublicRoute path="/results-test" redirectTo="/auth">
+                <ResultsPage />
+              </PublicRoute>
+
+              <PublicRoute path="/results" redirectTo="/auth">
                 {<ResultsPage />}
               </PublicRoute>
 
@@ -58,12 +93,10 @@ function App() {
               <PublicRoute path="/contacts">
                 {/* <ContactsPage /> */}
               </PublicRoute>
-              <Route>
-                <Navigation />
-              </Route>
-              <Route>
+
+              {/* <Route>
                 <Redirect to="/auth" />
-              </Route>
+              </Route> */}
             </Suspense>
           </Switch>
           <ToastContainer transition={Flip} />
