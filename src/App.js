@@ -8,7 +8,7 @@ import PrivateRoute from './components/Routes/PrivateRoute';
 import { getIsFetchingCurrentUser } from './redux/authorization/authorization-selectors';
 import { fetchCurrentUser } from './redux/authorization/authorization-operations';
 import Navigation from './components/Navigation/Navigation';
-import AuthPage from './views/AuthPage';
+import AuthPage from './Views/AuthPage';
 import './App.css';
 import ResultsPage from './components/Results/Results';
 import Footer from './components/Footer';
