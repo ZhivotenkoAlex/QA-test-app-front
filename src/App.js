@@ -13,7 +13,7 @@ import './App.css';
 import ResultsPage from './components/Results/Results';
 import Footer from './components/Footer';
 import UsefullInfo from './components/UsefullInfo/UsefullInfo';
-import TestPage from './Views/TestPage/TestPage';
+import TestPage from './views/TestPage/TestPage';
 
 import {
   books,
@@ -22,11 +22,11 @@ import {
 
 const MainPageView = lazy(() =>
   import(
-    './Views/MainPageView/MainPageView' /* webpackChunkName: "main-page" */
+    './views/MainPageView/MainPageView' /* webpackChunkName: "main-page" */
   ),
 );
 const AuthPage = lazy(() =>
-  import('./Views/AuthPage' /* webpackChunkName: "auth-page" */),
+  import('./views/AuthPage' /* webpackChunkName: "auth-page" */),
 );
 
 function App() {
