@@ -1,45 +1,3 @@
-
-/* //  Home-register-login
-
-        <section class="homeLogin container">
-            <div class="proTest">
-                <h1 class="homeLoginTitle">Pro Test</h1>
-                <p class="homeText"><span class="homeAccent">[</span> We will help you find weak points in knowledge
-                    so
-                    that you can strengthen it. We will show
-                    you
-                    what is relevant to know for a <span class="homeAccent">QA Engineer</span> and will try to make the
-                    learning process more
-                    diverse_ <span class="homeAccent">]</span></p>
-            </div>
-
-            <div class="formRegister">
-                <p class="authorizeTitle">You can use your Google Account to authorize:</p>
-                <button class="buttonGoogle" type="button"></button>
-                <p class="authorizeTitle">Or login to our app using e-mail and password:</p>
-                <form action="" class="formLogin">
-                    <div class="formField">
-                        <input class="formInput " type="email" name="mail" id="mail" autocomplete="on"
-                            placeholder="E-mail">
-                        <label class="formLabel formEmail" for="mail"></label>
-                    </div>
-                    <div class="formField">
-                        <input class="formInput " type="password" name="password" id="password"
-                            placeholder="Password" />
-                        <label class="formLabel formPassword" for="password"></label>
-                    </div>
-                </form>
-                <div class="signButtons">
-                    <button type="submit" class="button signin">Sign in</button>
-                    <button type="submit" class="button buttonActive">Sign up</button>
-                </div>
-            </div>
-        </section> */
-.authorizeTitle {
-  font-weight: 500;
-  line-height: 1, 2;
-}
-
 .formInput {
   padding: 20px 25px;
   font-weight: 500;
@@ -52,7 +10,6 @@
 }
 
 .formLabel {
-
   display: block;
 }
 
@@ -80,7 +37,6 @@
 
 .button:focus,
 .button:hover {
-  transform: scale(1.06);
   color: var(--primaryWhiteColor);
   background-color: var(--OrangeColor);
   border: 1px solid var(--OrangeColor);
@@ -91,15 +47,8 @@
 }
 
 @media screen and (max-width: 767px) {
-    .authorizeTitle {
-    margin-bottom: 20px;
-    font-size: 10px;
-    line-height: 1, 2;
-  }
-
   .formEmail {
-    margin-bottom: 20px;color: green;
-
+    margin-bottom: 20px;
   }
 
   .formPassword {
@@ -117,12 +66,6 @@
 }
 
 @media screen and (min-width: 768px) {
-    .authorizeTitle {
-    margin-bottom: 30px;
-    font-size: 14px;
-    line-height: 1, 2;
-  }
-
   .formInput {
     width: 423px;
   }
