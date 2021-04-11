@@ -1,0 +1,40 @@
+{
+  "theoryQuestions": [
+    {
+      "question": "What does 'CI' stands for in QA?",
+      "questionId": 1,
+      "answers": [
+        "Connection interface",
+        "Nothing",
+        "Continuous Integration",
+        "Centiliter"
+      ],
+      "rightAnswer": "Continuous Integration"
+    },
+    {
+      "question": "Testing stages. Choose the right sequence",
+      "questionId": 2,
+      "answers": [
+        "Requirements Management - Product Analysis - Developing a Test Strategy and Planning Quality Control Procedures - Generating Test Documentation - Prototype Testing - Basic Testing - Stabilization - Operation",
+        "Product analysis - Working with requirements -. Developing a test strategy and planning quality control procedures - Creating test documentation - Prototype testing - Basic testing - Stabilization - Operation",
+        "Requirements Management - Product Analysis - Developing a Test Strategy and Planning Quality Control Procedures - Prototype Testing - Generating Test Documentation - Basic Testing - Stabilization - Operation",
+        "Requirements Management - Product Analysis - Developing a Test Strategy and Planning Quality Control Procedures - Generating Test Documentation - Prototype Testing - Stabilization - Basic Testing - Operation",
+        "Requirements Management - Product Analysis - Developing a Test Strategy and Planning Quality Control Procedures - Prototype Testing - Generating Test Documentation - Basic Testing - Stabilization - Operation"
+      ],
+      "rightAnswer": "Product analysis - Working with requirements -. Developing a test strategy and planning quality control procedures - Creating test documentation - Prototype testing - Basic testing - Stabilization - Operation"
+    },
+    {
+      "question": "What are the main benefits of automated testing?",
+      "questionId": 3,
+      "answers": [
+        "Fast execution",
+        "Reduced software maintenance costs",
+        "Saving testers time",
+        "Possibility of execution outside working hours",
+        "All options are correct",
+        "All options are incorrect"
+      ],
+      "rightAnswer": "All options are correct"
+    }
+  ]
+}

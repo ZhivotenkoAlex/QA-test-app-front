@@ -1,0 +1,23 @@
+[
+  {
+    "questionId": 15,
+    "answer": "Learnability, memorability, errors, satisfaction"
+  },
+  { "questionId": 24, "answer": "Functional testing" },
+  { "questionId": 18, "answer": "Check list" },
+  { "questionId": 4, "answer": "Clear consistency" },
+  {
+    "questionId": 2,
+    "answer": "During the verification process, we make sure that all the created application functionality works correctly and logically, right"
+  },
+  { "questionId": 23, "answer": "Testing the web application" },
+  { "questionId": 11, "answer": "All options are correct" },
+  { "questionId": 25, "answer": "Testing the web application" },
+  { "questionId": 20, "answer": "Use case" },
+  { "questionId": 26, "answer": "Testing the web application" },
+  {
+    "questionId": 17,
+    "answer": "The stage at which the testing strategy is determined"
+  },
+  { "questionId": 21, "answer": "Test Analysis Report" }
+]
