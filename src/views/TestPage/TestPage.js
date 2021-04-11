@@ -45,9 +45,11 @@ const TestPage = ({ typeQuestions, setTypeQuestions, answers, setAnswers }) => {
     setQuestionIndex(questionIndex + 1);
   };
 
-  //   const handleFinishClick = () => {
-  //     isCompleted ? resetTestState() : console.log('Немає всіх відповідей');
-  //   };
+  const handleFinishClick = () => {
+    if (!isCompleted) {
+      resetTestState();
+    }
+  };
 
   const resetTestState = () => {
     setTypeQuestions(null);
@@ -75,7 +77,7 @@ const TestPage = ({ typeQuestions, setTypeQuestions, answers, setAnswers }) => {
 
         <Link
           className={s.testFinish}
-          onClick={resetTestState}
+          onClick={handleFinishClick}
           to={{
             pathname: isCompleted ? '/results' : '/',
           }}

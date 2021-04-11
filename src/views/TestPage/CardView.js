@@ -39,7 +39,7 @@ const CardView = ({
       ...answers,
       {
         questionId: questions[questionIndex].questionId,
-        answer: currentAnswer,
+        currentAnswer: currentAnswer,
       },
     ]);
   };
