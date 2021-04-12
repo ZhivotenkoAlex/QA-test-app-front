@@ -87,7 +87,7 @@ function App() {
                 {<ResultsPage />}
               </PublicRoute>
 
-              <PrivateRoute path="/usefull-info" redirectTo="/auth">
+              <PrivateRoute path="/useful-info" redirectTo="/auth">
                 <UsefullInfo books={books} resources={resources} />
               </PrivateRoute>
 
