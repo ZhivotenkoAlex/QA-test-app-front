@@ -4,13 +4,9 @@ import sprite from '../../img/sprite.svg';
 import { testTypes } from './constants';
 import s from './MainPageView.module.css';
 
-// import { techQuestions } from '../../temp/tech-questions.json';
-import { theoryQuestions } from '../../temp/theory-questions.json';
-
 const MainPageView = ({ setTypeQuestions }) => {
   const hanldeTestClick = e => {
     setTypeQuestions(e.currentTarget.id);
-    console.log(e.currentTarget);
   };
 
   return (

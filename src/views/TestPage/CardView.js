@@ -26,10 +26,9 @@ const CardView = ({
 
     answers.map((answer, index) => {
       if (answer.questionId === questions[questionIndex].questionId) {
-        updatedAnswers[index].answer = currentAnswer;
+        updatedAnswers[index].currentAnswer = currentAnswer;
         setAnswers([...updatedAnswers]);
         isUpdated = true;
-        return;
       }
     });
   };
@@ -53,7 +52,8 @@ const CardView = ({
   return (
     <div className={s.testingField}>
       <p className={s.testingQuestion}>
-        Question <span className={s.testingAnswers}>{questionIndex + 1}</span><span className={s.slash}>/</span>
+        Question <span className={s.testingAnswers}>{questionIndex + 1}</span>
+        <span className={s.slash}>/</span>
         {questions.length}
       </p>
 
