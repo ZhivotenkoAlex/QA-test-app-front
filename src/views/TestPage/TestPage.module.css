@@ -57,11 +57,38 @@
   transform: scale(1.02);
 }
 
+.confirm {
+  padding: 6px 12px;
+}
+
+.yes {
+  margin-right: 24px;
+  background-color: #606060;
+}
+
+.confirmCenter {
+  width: min-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.confirmText {
+  text-align: center;
+  margin-bottom: 12px;
+  color: #cc0000;
+}
+
 .testingField {
   background-color: var(--primaryWhiteColor);
   box-shadow: var(--boxShadowModal);
   margin-bottom: 20px;
 }
+
+.confirmContainer {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
 .testingQuestion {
   font-weight: 400;
   text-align: center;
@@ -194,8 +221,17 @@
     line-height: 1.2;
   }
 
+  .confirm {
+    padding: 6px 12px;
+  }
+
   .testingField {
     padding: 40px 20px 60px 20px;
+  }
+
+  .confirmContainer {
+    padding-top: 24px;
+    padding-bottom: 24px;
   }
 
   .testingAnswers {
@@ -261,8 +297,17 @@
     line-height: 1.2;
   }
 
+  .confirm {
+    padding: 6px 12px;
+  }
+
   .testingField {
     padding: 50px 37px 58px 57px;
+  }
+
+  .confirmContainer {
+    padding-top: 24px;
+    padding-bottom: 24px;
   }
 
   .testingAnswers {
@@ -324,6 +369,11 @@
 
   .testingField {
     padding: 50px 86px 58px 86px;
+  }
+
+  .confirmContainer {
+    padding-top: 24px;
+    padding-bottom: 24px;
   }
 
   .answerText {

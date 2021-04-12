@@ -102,26 +102,32 @@ const TestPage = ({ typeQuestions, setTypeQuestions, answers, setAnswers }) => {
       </div>
 
       {showConfirm && (
-        <div>
-          <p>Not all questions have answers. Finish without saving?</p>
+        <div className={`${s.testingField} ${s.confirmContainer}`}>
+          <p className={`${s.answerText} ${s.confirmText}`}>
+            Not all questions have answers. Finish without saving?
+          </p>
 
-          <Link
-            onClick={handleYesClick}
-            to={{
-              pathname: '/',
-            }}
-          >
-            Yes
-          </Link>
+          <div className={s.confirmCenter}>
+            <Link
+              className={`${s.testFinish} ${s.confirm} ${s.yes}`}
+              onClick={handleYesClick}
+              to={{
+                pathname: '/',
+              }}
+            >
+              Yes
+            </Link>
 
-          <Link
-            onClick={handleCancelClick}
-            to={{
-              pathname: '/test',
-            }}
-          >
-            Cancel
-          </Link>
+            <Link
+              className={`${s.testFinish} ${s.confirm}`}
+              onClick={handleCancelClick}
+              to={{
+                pathname: '/test',
+              }}
+            >
+              Cancel
+            </Link>
+          </div>
         </div>
       )}
 
