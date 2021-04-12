@@ -11,12 +11,8 @@ export default function UserMenu() {
   const dispatch = useDispatch();
 
   const userEmail = useSelector(getUserEmail);
-  const userName = userEmail.match(/[\D]+(?=[@])|[\d]+_?[\d]/);
-
-  const nameInAvatar = userName
-    .map(us => us[0])
-    .join()
-    .toUpperCase();
+  const userName = userEmail?.split('@')[0];
+  const nameInAvatar = userName?.[0].toUpperCase();
 
   return (
     <>
