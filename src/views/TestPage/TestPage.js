@@ -67,8 +67,17 @@ const TestPage = ({ typeQuestions, setTypeQuestions, answers, setAnswers }) => {
     setShowConfirm(false);
   };
 
+  const closeConfirm = event => {
+    if (
+      !event.target.closest(`.${s.confirmContainer}`) &&
+      event.target !== document.querySelector(`.${s.testFinish}`)
+    ) {
+      setShowConfirm(false);
+    }
+  };
+
   return (
-    <section className={`${s.testing} ${s.container}`}>
+    <section onClick={closeConfirm} className={`${s.testing} ${s.container}`}>
       <div className={s.testingHeader}>
         {typeQuestions === testTypes.tech && (
           <p className={s.testingTheory}>
@@ -134,47 +143,67 @@ const TestPage = ({ typeQuestions, setTypeQuestions, answers, setAnswers }) => {
       {!questions && <Loader></Loader>}
 
       {questions && (
-        <CardView
-          questions={questions}
-          answers={answers}
-          setAnswers={setAnswers}
-          questionIndex={questionIndex}
-          setIsCompleted={setIsCompleted}
-        />
-      )}
+        <div>
+          <CardView
+            questions={questions}
+            answers={answers}
+            setAnswers={setAnswers}
+            questionIndex={questionIndex}
+            setIsCompleted={setIsCompleted}
+          />
 
-      <div
-        className={`${s.questionButtonContainer} 
+          <div
+            className={`${s.questionButtonContainer} 
                   ${questionIndex === 0 && s.alignRight} 
                   ${totalQuestions - 1 === questionIndex && s.alignLeft} 
                   `}
-      >
-        {Boolean(questionIndex) && (
-          <button
-            type="button"
-            onClick={handlePrevClick}
-            className={s.questionButton}
           >
-            <svg width="24" height="24">
-              <use href={sprite + '#arrow-left'}></use>
-            </svg>
-            <span className={s.buttonText}>Previous question</span>
-          </button>
-        )}
+            {Boolean(questionIndex) && (
+              <button
+                type="button"
+                onClick={handlePrevClick}
+                className={s.questionButton}
+              >
+                <svg width="24" height="24">
+                  <use href={sprite + '#arrow-left'}></use>
+                </svg>
+                <span className={s.buttonText}>Previous question</span>
+              </button>
+            )}
 
-        {totalQuestions - 1 !== questionIndex && (
-          <button
-            type="button"
-            onClick={handleNextClick}
-            className={s.questionButton}
+            {totalQuestions - 1 !== questionIndex && (
+              <button
+                type="button"
+                onClick={handleNextClick}
+                className={s.questionButton}
+              >
+                <span className={s.buttonText}>Next question</span>
+                <svg width="24" height="24">
+                  <use href={sprite + '#arrow-right'}></use>
+                </svg>
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+
+      {isCompleted && (
+        <div className={s.sendButton}>
+          <Link
+            className={s.testFinish}
+            onClick={handleFinishClick}
+            to={{
+              pathname: isCompleted
+                ? '/results'
+                : exactlyComplete
+                ? '/'
+                : '/test',
+            }}
           >
-            <span className={s.buttonText}>Next question</span>
-            <svg width="24" height="24">
-              <use href={sprite + '#arrow-right'}></use>
-            </svg>
-          </button>
-        )}
-      </div>
+            Send answers
+          </Link>
+        </div>
+      )}
     </section>
   );
 };
