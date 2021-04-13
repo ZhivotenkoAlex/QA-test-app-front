@@ -31,6 +31,7 @@ const UsefullInfo = lazy(() =>
   import(
     './components/UsefullInfo/UsefullInfo' /* webpackChunkName: "materials-page" */
   ),
+);
 const ContactsPage = lazy(() =>
   import('./views/ContactsPage' /* webpackChunkName: "contacts-page" */),
 );
