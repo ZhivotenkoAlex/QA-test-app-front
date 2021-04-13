@@ -1,37 +1,37 @@
-import { useEffect, Suspense, useState } from 'react';
+import { useEffect, Suspense, useState, lazy } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { ToastContainer, Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Loader from './components/Loader/Loader';
 import PublicRoute from './components/Routes/PublicRoute';
 import PrivateRoute from './components/Routes/PrivateRoute';
 import { getIsFetchingCurrentUser } from './redux/authorization/authorization-selectors';
 import { fetchCurrentUser } from './redux/authorization/authorization-operations';
 import Navigation from './components/Navigation/Navigation';
-import AuthPage from './Views/AuthPage';
 import './App.css';
 import ResultsPage from './components/Results/Results';
 import Footer from './components/Footer';
 import UsefullInfo from './components/UsefullInfo/UsefullInfo';
+import TestPage from './views/TestPage/TestPage';
 
 import {
   books,
   resources,
 } from './components/UsefullInfo/usefullMaterials.json';
 
-import MainPageView from './Views/MainPageView/MainPageView';
-import TestPage from './Views/TestPage/TestPage';
-// import MainPageView from './views/MainPageView/MainPageView';
-// import TestPage from './views/TestPage/TestPage';
-
-import './App.css';
+const MainPageView = lazy(() =>
+  import(
+    './views/MainPageView/MainPageView' /* webpackChunkName: "main-page" */
+  ),
+);
+const AuthPage = lazy(() =>
+  import('./views/AuthPage' /* webpackChunkName: "auth-page" */),
+);
 
 function App() {
   const [typeQuestions, setTypeQuestions] = useState(null);
   const [answers, setAnswers] = useState([]);
-
-  console.log('Відповід:');
-  console.log(answers);
 
   const isFetchingCurrentUser = useSelector(getIsFetchingCurrentUser);
   const dispatch = useDispatch();
@@ -43,52 +43,36 @@ function App() {
   return (
     <>
       {isFetchingCurrentUser ? (
-        <p>Loader</p>
+        <Loader />
       ) : (
         <>
-          {/* <AppBar /> */}
+          <Navigation />
           <Switch>
-            <Suspense fallback={<p>Loader</p>}>
-              <Route>
-                <Navigation />
-              </Route>
-
-              {/* <PrivateRoute path="/" exact redirectTo="/auth">
-                <MainPageView></MainPageView>
-              </PrivateRoute> */}
-
-              <PublicRoute path="/" exact redirectTo="/auth">
+            <Suspense fallback={<Loader />}>
+              <PrivateRoute path="/" exact redirectTo="/auth">
                 <MainPageView
                   setTypeQuestions={setTypeQuestions}
                 ></MainPageView>
-              </PublicRoute>
+              </PrivateRoute>
 
               <PublicRoute path="/auth" restricted redirectTo="/">
                 <AuthPage />
               </PublicRoute>
 
-              {/* <PrivateRoute path="/test" redirectTo="/auth">
-                <TestPage />
-              </PrivateRoute> */}
-
-              <PublicRoute path="/test" redirectTo="/auth">
+              <PrivateRoute path="/test" redirectTo="/auth">
                 <TestPage
                   typeQuestions={typeQuestions}
                   setTypeQuestions={setTypeQuestions}
                   answers={answers}
                   setAnswers={setAnswers}
                 ></TestPage>
-              </PublicRoute>
-
-              <PublicRoute path="/results-test" redirectTo="/auth">
-                <ResultsPage />
-              </PublicRoute>
+              </PrivateRoute>
 
               <PublicRoute path="/results" redirectTo="/auth">
                 {<ResultsPage />}
               </PublicRoute>
 
-              <PrivateRoute path="/usefull-info" redirectTo="/auth">
+              <PrivateRoute path="/useful-info" redirectTo="/auth">
                 <UsefullInfo books={books} resources={resources} />
               </PrivateRoute>
 
@@ -96,15 +80,15 @@ function App() {
                 {/* <ContactsPage /> */}
               </PublicRoute>
 
-              {/* <Route>
-                <Redirect to="/auth" />
-              </Route> */}
+              <PrivateRoute>
+                <Redirect to="/" />
+              </PrivateRoute>
             </Suspense>
           </Switch>
           <ToastContainer transition={Flip} />
+          <Footer />
         </>
       )}
-      <Footer />
     </>
   );
 }

@@ -46,7 +46,7 @@
     text-align: left;
   }
  
-  .materialsList .item {
+   .item {
     list-style-type: decimal;
     font-weight: 500;
     letter-spacing: 0.02em;
@@ -55,10 +55,7 @@
     font-weight: 500;
     letter-spacing: 0.02em;
   }
-  .materialsList .link {
-    text-decoration: underline;
-   
-  }
+
   .literature {
     composes: materialsList;
     margin-bottom: 36px;
@@ -82,16 +79,7 @@
       padding-right: 95px;
       padding-left: 13px;
     }
-    .materialsList {
-      font-size: 10px;
-      line-height: 1.6;
-    }
-  
-    .materialsList  {
-      font-size: 10px;
-      line-height: 1.6;
-    }
-    .materialsList .item {
+     .item {
       font-size: 10px;
       line-height: 1.6;
     }
@@ -118,16 +106,12 @@
       margin-left: 60px;
     }
   
-    .materialsList {
+    .item {
       font-size: 14px;
       line-height: 1.57;
       padding-right: 60px;
     }
-  
-    .materialsList {
-      font-size: 14px;
-      line-height: 1.57;
-    }
+
   }
   
   @media screen and (min-width: 1280px) {
@@ -141,9 +125,6 @@
     padding-right: 420px;
   }
 
-    .materialsList {
-      padding-right: 420px;
-    }
   }
 
 

@@ -3,18 +3,20 @@ import { Avatar } from '@material-ui/core';
 import { NavLink } from 'react-router-dom';
 import s from '../UserMenu/UserMenu.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { getUserName } from '../../redux/authorization/authorization-selectors';
+import { getUserEmail } from '../../redux/authorization/authorization-selectors';
 import { logOut } from '../../redux/authorization/authorization-operations';
-import signOut from './sign-out.svg';
+import sprite from '../../img/sprite.svg';
 
 export default function UserMenu() {
   const dispatch = useDispatch();
 
-  // const userName = useSelector(getUserName);
-  // const nameInAvatar = userName[0].toUpperCase();
+  const userEmail = useSelector(getUserEmail);
+  const userName = userEmail.match(/[\D]+(?=[@])|[\d]+_?[\d]/);
 
-  const nameInAvatar = 'D';
-  const userName = 'Dmitri';
+  const nameInAvatar = userName
+    .map(us => us[0])
+    .join()
+    .toUpperCase();
 
   return (
     <>
@@ -29,7 +31,7 @@ export default function UserMenu() {
         </NavLink>
         <NavLink
           exact
-          to="/usefull-info"
+          to="/useful-info"
           className={s.link}
           activeClassName={s.activeLink}
         >
@@ -48,7 +50,9 @@ export default function UserMenu() {
       </div>
 
       <button onClick={() => dispatch(logOut())} className={s.button}>
-        <img src={signOut} alt="sign-out" />
+        <svg className={s.iconExit}>
+          <use href={sprite + '#exit'} />
+        </svg>
       </button>
     </>
   );

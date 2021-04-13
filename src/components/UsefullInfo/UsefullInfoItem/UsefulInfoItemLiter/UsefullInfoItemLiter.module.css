@@ -1,18 +1,17 @@
+
 .text {
     font-weight: 500;
     letter-spacing: 0.02em;
   }
   @media screen and (max-width: 767px) {
     
-  
-    .materialsList .text {
+     .text {
       font-size: 10px;
       line-height: 1.6;
     }
   }
   
   @media screen and (min-width: 768px) {
-
      .text {
       font-size: 14px;
       line-height: 1.57;
