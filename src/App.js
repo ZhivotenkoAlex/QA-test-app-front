@@ -6,27 +6,31 @@ import 'react-toastify/dist/ReactToastify.css';
 import Loader from './components/Loader/Loader';
 import PublicRoute from './components/Routes/PublicRoute';
 import PrivateRoute from './components/Routes/PrivateRoute';
-import { getIsFetchingCurrentUser } from './redux/authorization/authorization-selectors';
+import {
+  getIsFetchingCurrentUser,
+  getIsLoggedIn,
+} from './redux/authorization/authorization-selectors';
 import { fetchCurrentUser } from './redux/authorization/authorization-operations';
 import Navigation from './components/Navigation/Navigation';
-import './App.css';
 import ResultsPage from './components/Results/Results';
 import Footer from './components/Footer';
-import UsefullInfo from './components/UsefullInfo/UsefullInfo';
-import TestPage from './views/TestPage/TestPage';
-
-import {
-  books,
-  resources,
-} from './components/UsefullInfo/usefullMaterials.json';
+import GoogleRedirect from './components/GoogleRedirect';
 
 const MainPageView = lazy(() =>
   import(
-    './views/MainPageView/MainPageView' /* webpackChunkName: "main-page" */
+    './views/MainPageView/MainPageView' /* webpackChunkName: "home-page" */
   ),
 );
 const AuthPage = lazy(() =>
   import('./views/AuthPage' /* webpackChunkName: "auth-page" */),
+);
+const TestPage = lazy(() =>
+  import('./views/TestPage/TestPage' /* webpackChunkName: "test-page" */),
+);
+const UsefullInfo = lazy(() =>
+  import(
+    './components/UsefullInfo/UsefullInfo' /* webpackChunkName: "materials-page" */
+  ),
 );
 
 function App() {
@@ -34,6 +38,7 @@ function App() {
   const [answers, setAnswers] = useState([]);
 
   const isFetchingCurrentUser = useSelector(getIsFetchingCurrentUser);
+  const isLoggedIn = useSelector(getIsLoggedIn);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -55,7 +60,11 @@ function App() {
                 ></MainPageView>
               </PrivateRoute>
 
-              <PublicRoute path="/auth" restricted redirectTo="/">
+              <PublicRoute path="/auth/google" restricted redirectTo="/">
+                <GoogleRedirect />
+              </PublicRoute>
+
+              <PublicRoute path="/auth" exact restricted redirectTo="/">
                 <AuthPage />
               </PublicRoute>
 
@@ -72,17 +81,17 @@ function App() {
                 {<ResultsPage />}
               </PublicRoute>
 
-              <PrivateRoute path="/useful-info" redirectTo="/auth">
-                <UsefullInfo books={books} resources={resources} />
+              <PrivateRoute path="/usefull-info" redirectTo="/auth">
+                <UsefullInfo />
               </PrivateRoute>
 
-              <PublicRoute path="/contacts">
-                {/* <ContactsPage /> */}
-              </PublicRoute>
+              {/* <PublicRoute path="/contacts"> */}
+              {/* <ContactsPage /> */}
+              {/* </PublicRoute> */}
 
-              <PrivateRoute>
-                <Redirect to="/" />
-              </PrivateRoute>
+              <Route>
+                {isLoggedIn ? <Redirect to="/" /> : <Redirect to="/auth" />}
+              </Route>
             </Suspense>
           </Switch>
           <ToastContainer transition={Flip} />
