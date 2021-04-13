@@ -1,7 +1,11 @@
 .container {
   display: flex;
   align-items: center;
-  margin-right: 20px;
+  border-bottom: 1px solid #e2e3e5;
+}
+
+.navigation {
+  margin-left: auto;
 }
 
 .avatar {
@@ -15,6 +19,7 @@
   line-height: 1.14;
   letter-spacing: 0.02em;
   margin-left: 30px;
+  margin-right: 20px;
 }
 
 .link {
@@ -23,13 +28,9 @@
   text-decoration: none;
   font-weight: 500;
   font-size: 14px;
-  line-height: 16px;
+  line-height: 1.14;
 
   color: #000000;
-}
-
-.link:first-child {
-  margin-left: 491px;
 }
 
 .activeLink {
@@ -40,13 +41,72 @@
 .button {
   border: none;
   outline: none;
-  background-color: transparent;
   padding: 28px 22px 26px 20px;
   border-left: 1px solid #e2e3e5;
   cursor: pointer;
+  background-color: transparent;
+}
+
+.buttonMobile {
+  border: none;
+  outline: none;
+  padding: 28px 22px 26px 20px;
+  margin-left: 20px;
+  border-left: 1px solid #e2e3e5;
+  cursor: pointer;
+  background-color: transparent;
 }
 
 .iconExit {
   width: 16px;
   height: 16px;
+}
+
+.iconMobileMenu {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+  .navigation {
+    display: none;
+  }
+
+  .name {
+    display: none;
+  }
+
+  .button {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .buttonMobile {
+    display: none;
+  }
+
+  .mobileMenu {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .name {
+    font-size: 12px;
+    line-height: 1.333;
+    letter-spacing: 0.02em;
+    margin-left: 10px;
+    margin-right: 20px;
+  }
+
+  .link {
+    display: inline-block;
+    margin-right: 70px;
+    font-size: 12px;
+    line-height: 1.3;
+
+    color: #000000;
+  }
 }

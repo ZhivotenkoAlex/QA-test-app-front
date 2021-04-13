@@ -6,7 +6,7 @@ import sprite from '../../img/sprite.svg';
 export default function Logo() {
   return (
     <>
-      <NavLink exact to="/">
+      <NavLink exact to="/" className={s.link}>
         <svg className={s.logo}>
           <use href={sprite + '#logo'} />
         </svg>
