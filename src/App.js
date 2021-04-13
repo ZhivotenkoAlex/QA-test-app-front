@@ -1,5 +1,5 @@
 import { useEffect, Suspense, useState, lazy } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { ToastContainer, Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -69,7 +69,7 @@ function App() {
               </PrivateRoute>
 
               <PublicRoute path="/results" redirectTo="/auth">
-                {<ResultsPage />}
+                {<ResultsPage answers={answers} setAnswers={setAnswers} />}
               </PublicRoute>
 
               <PrivateRoute path="/useful-info" redirectTo="/auth">

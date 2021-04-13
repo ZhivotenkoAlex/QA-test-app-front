@@ -34,6 +34,7 @@ const TestPage = ({ typeQuestions, setTypeQuestions, answers, setAnswers }) => {
         return;
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handlePrevClick = () => {

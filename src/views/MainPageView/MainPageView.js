@@ -1,12 +1,16 @@
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import sprite from '../../img/sprite.svg';
+import action from '../../redux/questions/questions-action';
 import { testTypes } from './constants';
 import s from './MainPageView.module.css';
 
 const MainPageView = ({ setTypeQuestions }) => {
+  const dispatch = useDispatch();
   const hanldeTestClick = e => {
     setTypeQuestions(e.currentTarget.id);
+    dispatch(action.test(e.currentTarget.id));
   };
 
   return (

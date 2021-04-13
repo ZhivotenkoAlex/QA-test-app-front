@@ -1,12 +1,29 @@
+import { Link } from 'react-router-dom';
+
 import cat from '../../img/cat.svg';
 import s from './Results.module.scss';
 import { VictoryPie, VictoryLabel } from 'victory';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import * as operation from '../../redux/questions/questions-operations';
+import action from '../../redux/questions/questions-action';
 
-export default function Results() {
+// import API from '../../service/APIservice';
+
+export default function Results({ answers, setAnswers }) {
+  const dispatch = useDispatch();
   const rightAnswers = useSelector(state => state.questions.rightAnswer);
-  console.log(rightAnswers);
+  const curentTest = useSelector(state => state.curentTest);
   const percentRightAnswers = Math.round((100 / 12) * rightAnswers);
+
+  const onTryAgain = () => {
+    dispatch(action.getRightAnswersSuccess(null));
+    setAnswers([]);
+  };
+
+  useEffect(() => {
+    dispatch(operation.getRightAnswers(answers, curentTest));
+  }, [dispatch, answers, curentTest]);
   return (
     <div className={s.mainConteiner}>
       <h2 className={s.title}>Results</h2>
@@ -19,7 +36,7 @@ export default function Results() {
           endAngle={495}
           responsive={true}
           animate={{
-            duration: 2000,
+            duration: 1000,
           }}
           colorScale={['#FF6B01', '#D7D7D7']}
           data={[
@@ -51,7 +68,15 @@ export default function Results() {
       <p className={s.sentenceText}>
         But you still need to learn some materials.
       </p>
-      <button className={s.btnTryAgain}>Try again</button>
+      <Link
+        to={{
+          pathname: `/`,
+        }}
+      >
+        <button className={s.btnTryAgain} onClick={onTryAgain}>
+          Try again
+        </button>
+      </Link>
     </div>
   );
 }

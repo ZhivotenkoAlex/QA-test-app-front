@@ -24,6 +24,7 @@ const CardView = ({
     const updatedAnswers = [...answers];
     isUpdated = false;
 
+    // eslint-disable-next-line array-callback-return
     answers.map((answer, index) => {
       if (answer.questionId === questions[questionIndex].questionId) {
         updatedAnswers[index].currentAnswer = currentAnswer;

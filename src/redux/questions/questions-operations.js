@@ -20,6 +20,15 @@ export const fetchTheoryQuestion = () => async dispatch => {
     dispatch(action.fetchQuestionsError(error.message));
   }
 };
+export const getRightAnswers = (body, curentTest) => async dispatch => {
+  dispatch(action.getRightAnswersRequuest());
+  try {
+    const rightAnswer = await API.sendChekResults(body, curentTest);
+    dispatch(action.getRightAnswersSuccess(rightAnswer));
+  } catch (error) {
+    dispatch(action.getRightAnswersError(error.message));
+  }
+};
 
 // export const fetchContacts = () => async dispatch => {
 //   dispatch(contactsAction.fetchContactsRequuest());
