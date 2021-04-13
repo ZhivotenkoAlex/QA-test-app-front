@@ -61,9 +61,9 @@
   padding: 6px 12px;
 }
 
-.yes {
-  margin-right: 24px;
-  background-color: #606060;
+.cancel {
+  margin-left: 24px;
+  background-color: var(--textColor);
 }
 
 .confirmCenter {
@@ -87,6 +87,40 @@
 .confirmContainer {
   padding-top: 24px;
   padding-bottom: 24px;
+  animation-name: slideRight;
+  animation-duration: 1500ms;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes slideRight {
+  0% {
+    transform: scale(0.3) rotate(6deg) translateX(-30%) translateY(30%);
+    opacity: 0.2;
+  }
+  30% {
+    transform: scale(1.03) rotate(-2deg) translateX(2%) translateY(-2%);
+    opacity: 1;
+  }
+  45% {
+    transform: scale(0.98) rotate(1deg) translateX(0%) translateY(0%);
+    opacity: 1;
+  }
+  60% {
+    transform: scale(1.01) rotate(-1deg) translateX(0%) translateY(0%);
+    opacity: 1;
+  }
+  75% {
+    transform: scale(0.99) rotate(1deg) translateX(0%) translateY(0%);
+    opacity: 1;
+  }
+  90% {
+    transform: scale(1.01) rotate(0deg) translateX(0%) translateY(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0deg) translateX(0%) translateY(0%);
+    opacity: 1;
+  }
 }
 
 .testingQuestion {
@@ -173,6 +207,7 @@
   display: flex;
   justify-content: center;
   margin-top: 24px;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .alignRight {
@@ -262,7 +297,7 @@
   }
 
   .answerText {
-    width: 202px;
+    width: 200px;
     margin-top: 6px;
 
     font-size: 10px;
