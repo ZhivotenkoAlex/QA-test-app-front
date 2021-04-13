@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './AuthForm.module.css';
@@ -59,7 +60,7 @@ const AuthForm = ({ onSubmit }) => {
           value={email}
           name="mail"
           id="mail"
-          autoComplete="true"
+          autoComplete="on"
           type="email"
           placeholder="E-mail"
           onChange={e => setEmail(e.target.value)}
@@ -106,3 +107,5 @@ const AuthForm = ({ onSubmit }) => {
   );
 };
 export default AuthForm;
+
+AuthForm.prototype = { onSubmit: PropTypes.func.isRequired };
