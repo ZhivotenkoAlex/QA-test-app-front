@@ -118,7 +118,7 @@ const TestPage = ({ typeQuestions, setTypeQuestions, answers, setAnswers }) => {
 
           <div className={s.confirmCenter}>
             <Link
-              className={`${s.testFinish} ${s.confirm} ${s.yes}`}
+              className={`${s.testFinish} ${s.confirm} `}
               onClick={handleYesClick}
               to={{
                 pathname: '/',
@@ -128,7 +128,7 @@ const TestPage = ({ typeQuestions, setTypeQuestions, answers, setAnswers }) => {
             </Link>
 
             <Link
-              className={`${s.testFinish} ${s.confirm}`}
+              className={`${s.testFinish} ${s.confirm} ${s.cancel}`}
               onClick={handleCancelClick}
               to={{
                 pathname: '/test',
