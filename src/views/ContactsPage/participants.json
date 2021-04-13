@@ -1,0 +1,74 @@
+{
+    "members": [
+        {
+            "id": 1,
+            "imgUrl": "https://files.fm/thumb_show.php?i=57hsd8ezd ",
+            "name": "Alexandr Zhivotenko",
+            "title": "Front-End Developer",
+            "descr": "Our awesome team-lead"
+        },
+        {
+            "id": 2,
+            "imgUrl": "https://files.fm/thumb_show.php?i=qjsdurw2e",
+            "name": "Taisia Morgunskaya",
+            "title": "Our awesome scrum master",
+            "descr": "Lorem ipsum"
+        },
+        {
+            "id": 3,
+            "imgUrl": "https://files.fm/thumb_show.php?i=jwp8x2gck",
+            "name": "Anton Lazurko",
+            "title": "Front-End Developer",
+            "descr": "Lorem ipsum"
+        },
+        {
+            "id": 4,
+            "imgUrl": "https://files.fm/thumb_show.php?i=h2d5d8456",
+            "name": "Lillia Novikova",
+            "title": "Front-End Developer",
+            "descr": "Lorem ipsum"
+        },
+        {
+            "id": 5,
+            "imgUrl": "https://files.fm/thumb_show.php?i=cfjznttmx",
+            "name": "Ivan Vitenko",
+            "title": "Front-End Developer",
+            "descr": "Lorem ipsum"
+        },
+        {
+            "id": 6,
+            "imgUrl": "https://files.fm/thumb_show.php?i=s9b5umh4u",
+            "name": "Daryna Pasichna",
+            "title": "Front-End Developer",
+            "descr": "Lorem ipsum"
+        },
+        {
+            "id": 7,
+            "imgUrl": "https://files.fm/thumb_show.php?i=bjjubz838",
+            "name": "Fedir Havrylyak ",
+            "title": "Front-End Developer",
+            "descr": "Lorem ipsum"
+        },
+        {
+            "id": 8,
+            "imgUrl": "https://files.fm/thumb_show.php?i=mmgbdj4pg",
+            "name": "Oleksii Fedorkan",
+            "title": "Front-End Developer",
+            "descr": "Lorem ipsum"
+        },
+        {
+            "id": 9,
+            "imgUrl": "https://files.fm/thumb_show.php?i=eu8vvdznq",
+            "name": "Ekaterina Kruichkovskaya",
+            "title": "Front-End Developer",
+            "descr": "Lorem ipsum"
+        },
+        {
+            "id": 10,
+            "name": "Alexandr Bezvuglyak",
+            "imgUrl": "https://files.fm/thumb_show.php?i=kr3ezytws",
+            "title": "Front-End Developer",
+            "descr": "Lorem ipsum"
+        }
+    ]
+}

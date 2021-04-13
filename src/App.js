@@ -28,6 +28,9 @@ const MainPageView = lazy(() =>
 const AuthPage = lazy(() =>
   import('./views/AuthPage' /* webpackChunkName: "auth-page" */),
 );
+const ContactsPage = lazy(() =>
+  import('./views/ContactsPage' /* webpackChunkName: "auth-page" */),
+);
 
 function App() {
   const [typeQuestions, setTypeQuestions] = useState(null);
@@ -77,7 +80,7 @@ function App() {
               </PrivateRoute>
 
               <PublicRoute path="/contacts">
-                {/* <ContactsPage /> */}
+                <ContactsPage />
               </PublicRoute>
 
               <PrivateRoute>
