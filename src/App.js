@@ -33,9 +33,6 @@ function App() {
   const [typeQuestions, setTypeQuestions] = useState(null);
   const [answers, setAnswers] = useState([]);
 
-  console.log('Відповід:');
-  console.log(answers);
-
   const isFetchingCurrentUser = useSelector(getIsFetchingCurrentUser);
   const dispatch = useDispatch();
 
@@ -52,42 +49,30 @@ function App() {
           <Navigation />
           <Switch>
             <Suspense fallback={<Loader />}>
-              {/* <PrivateRoute path="/" exact redirectTo="/auth">
-                <MainPageView></MainPageView>
-              </PrivateRoute> */}
-
-              <PublicRoute path="/" exact redirectTo="/auth">
+              <PrivateRoute path="/" exact redirectTo="/auth">
                 <MainPageView
                   setTypeQuestions={setTypeQuestions}
                 ></MainPageView>
-              </PublicRoute>
+              </PrivateRoute>
 
               <PublicRoute path="/auth" restricted redirectTo="/">
                 <AuthPage />
               </PublicRoute>
 
-              {/* <PrivateRoute path="/test" redirectTo="/auth">
-                <TestPage />
-              </PrivateRoute> */}
-
-              <PublicRoute path="/test" redirectTo="/auth">
+              <PrivateRoute path="/test" redirectTo="/auth">
                 <TestPage
                   typeQuestions={typeQuestions}
                   setTypeQuestions={setTypeQuestions}
                   answers={answers}
                   setAnswers={setAnswers}
                 ></TestPage>
-              </PublicRoute>
-
-              <PublicRoute path="/results-test" redirectTo="/auth">
-                <ResultsPage />
-              </PublicRoute>
+              </PrivateRoute>
 
               <PublicRoute path="/results" redirectTo="/auth">
                 {<ResultsPage />}
               </PublicRoute>
 
-              <PrivateRoute path="/usefull-info" redirectTo="/auth">
+              <PrivateRoute path="/useful-info" redirectTo="/auth">
                 <UsefullInfo books={books} resources={resources} />
               </PrivateRoute>
 
@@ -95,9 +80,9 @@ function App() {
                 {/* <ContactsPage /> */}
               </PublicRoute>
 
-              {/* <Route>
-                <Redirect to="/auth" />
-              </Route> */}
+              <PrivateRoute>
+                <Redirect to="/" />
+              </PrivateRoute>
             </Suspense>
           </Switch>
           <ToastContainer transition={Flip} />

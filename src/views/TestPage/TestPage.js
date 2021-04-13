@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import apiService from '../../service/APIservice';
 import { testTypes } from '../MainPageView/constants';
 import sprite from '../../img/sprite.svg';
+import Loader from '../../components/Loader/Loader';
 import CardView from './CardView';
 import s from './TestPage.module.css';
 
@@ -12,7 +13,8 @@ const TestPage = ({ typeQuestions, setTypeQuestions, answers, setAnswers }) => {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [totalQuestions, setTotalQuestions] = useState(null);
   const [isCompleted, setIsCompleted] = useState(false);
-  //   const [answers, setAnswers] = useState([]);
+  const [exactlyComplete, setExactlyComplete] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   useEffect(() => {
     fetchQuestions();
@@ -20,7 +22,6 @@ const TestPage = ({ typeQuestions, setTypeQuestions, answers, setAnswers }) => {
     async function fetchQuestions() {
       if (typeQuestions === testTypes.tech && !questions) {
         const newQuestions = await apiService.fetchTechQuestions();
-        console.log(newQuestions.data);
         setQuestions(newQuestions.data);
         setTotalQuestions(newQuestions.data.length);
         return;
@@ -32,8 +33,6 @@ const TestPage = ({ typeQuestions, setTypeQuestions, answers, setAnswers }) => {
         setTotalQuestions(newQuestions.data.length);
         return;
       }
-
-      console.log('Тест не вибрано!');
     }
   }, []);
 
@@ -46,14 +45,26 @@ const TestPage = ({ typeQuestions, setTypeQuestions, answers, setAnswers }) => {
   };
 
   const handleFinishClick = () => {
-    if (!isCompleted) {
+    if (!isCompleted && exactlyComplete) {
       resetTestState();
+      return;
     }
+
+    setShowConfirm(true);
   };
 
   const resetTestState = () => {
     setTypeQuestions(null);
     setAnswers([]);
+  };
+
+  const handleYesClick = () => {
+    setExactlyComplete(true);
+    resetTestState();
+  };
+
+  const handleCancelClick = () => {
+    setShowConfirm(false);
   };
 
   return (
@@ -79,14 +90,48 @@ const TestPage = ({ typeQuestions, setTypeQuestions, answers, setAnswers }) => {
           className={s.testFinish}
           onClick={handleFinishClick}
           to={{
-            pathname: isCompleted ? '/results' : '/',
+            pathname: isCompleted
+              ? '/results'
+              : exactlyComplete
+              ? '/'
+              : '/test',
           }}
         >
           Finish test
         </Link>
       </div>
 
-      {!questions && <p>Loading...</p>}
+      {showConfirm && (
+        <div className={`${s.testingField} ${s.confirmContainer}`}>
+          <p className={`${s.answerText} ${s.confirmText}`}>
+            Not all questions have answers. Finish without saving?
+          </p>
+
+          <div className={s.confirmCenter}>
+            <Link
+              className={`${s.testFinish} ${s.confirm} ${s.yes}`}
+              onClick={handleYesClick}
+              to={{
+                pathname: '/',
+              }}
+            >
+              Yes
+            </Link>
+
+            <Link
+              className={`${s.testFinish} ${s.confirm}`}
+              onClick={handleCancelClick}
+              to={{
+                pathname: '/test',
+              }}
+            >
+              Cancel
+            </Link>
+          </div>
+        </div>
+      )}
+
+      {!questions && <Loader></Loader>}
 
       {questions && (
         <CardView
