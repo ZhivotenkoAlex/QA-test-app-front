@@ -34,9 +34,8 @@ export const googleRegister = createAsyncThunk(
   async (credentials, thunkAPI) => {
     token.set(credentials.token);
     try {
-      console.log(credentials);
       const { data } = await axios.get('user/info');
-      return { data, token: credentials.token };
+      return { ...data, token: credentials.token };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

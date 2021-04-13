@@ -13,6 +13,8 @@ import './App.css';
 import ResultsPage from './components/Results/Results';
 import Footer from './components/Footer';
 import UsefullInfo from './components/UsefullInfo/UsefullInfo';
+import GoogleRedirect from './components/GoogleRedirect';
+
 import TestPage from './views/TestPage/TestPage';
 
 import {
@@ -27,6 +29,9 @@ const MainPageView = lazy(() =>
 );
 const AuthPage = lazy(() =>
   import('./views/AuthPage' /* webpackChunkName: "auth-page" */),
+);
+const ContactsPage = lazy(() =>
+  import('./views/ContactsPage' /* webpackChunkName: "auth-page" */),
 );
 
 function App() {
@@ -58,6 +63,9 @@ function App() {
               <PublicRoute path="/auth" restricted redirectTo="/">
                 <AuthPage />
               </PublicRoute>
+              <PublicRoute path="/auth/google" restricted redirectTo="/">
+                <GoogleRedirect />
+              </PublicRoute>
 
               <PrivateRoute path="/test" redirectTo="/auth">
                 <TestPage
@@ -77,7 +85,7 @@ function App() {
               </PrivateRoute>
 
               <PublicRoute path="/contacts">
-                {/* <ContactsPage /> */}
+                <ContactsPage />
               </PublicRoute>
 
               <PrivateRoute>
