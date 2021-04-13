@@ -31,6 +31,8 @@ const UsefullInfo = lazy(() =>
   import(
     './components/UsefullInfo/UsefullInfo' /* webpackChunkName: "materials-page" */
   ),
+const ContactsPage = lazy(() =>
+  import('./views/ContactsPage' /* webpackChunkName: "contacts-page" */),
 );
 
 function App() {
@@ -67,6 +69,9 @@ function App() {
               <PublicRoute path="/auth" exact restricted redirectTo="/">
                 <AuthPage />
               </PublicRoute>
+              <PublicRoute path="/auth/google" restricted redirectTo="/">
+                <GoogleRedirect />
+              </PublicRoute>
 
               <PrivateRoute path="/test" redirectTo="/auth">
                 <TestPage
@@ -85,9 +90,9 @@ function App() {
                 <UsefullInfo />
               </PrivateRoute>
 
-              {/* <PublicRoute path="/contacts"> */}
-              {/* <ContactsPage /> */}
-              {/* </PublicRoute> */}
+              <PublicRoute path="/contacts">
+                <ContactsPage />
+              </PublicRoute>
 
               <Route>
                 {isLoggedIn ? <Redirect to="/" /> : <Redirect to="/auth" />}

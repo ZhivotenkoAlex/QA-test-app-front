@@ -14,12 +14,10 @@ const AuthPage = () => {
   const handleSubmint = async (credentials, targetName) => {
     switch (targetName) {
       case 'signIn':
-        console.log(targetName, credentials.email, credentials.password);
         await dispatch(logIn(credentials));
 
         break;
       case 'signUp':
-        console.log(targetName, credentials.email, credentials.password);
         await dispatch(register(credentials));
 
         break;
@@ -36,7 +34,7 @@ const AuthPage = () => {
           <p className={styles.homeText}>
             <span className={styles.homeAccent}>[</span> We will help you find
             weak points in knowledge so that you can strengthen it. We will show
-            you what is relevant to know for a{' '}
+            you what is relevant to know for a
             <span className={styles.homeAccent}>QA Engineer</span> and will try
             to make the learning process more diverse_
             <span className={styles.homeAccent}>]</span>
@@ -47,7 +45,6 @@ const AuthPage = () => {
             You can use your Google Account to authorize:
           </p>
 
-          {/* <button onClick={() => dispatch(googleRegister())}> */}
           <a
             className={styles.buttonGoogleLink}
             href="https://safe-bayou-94848.herokuapp.com/api/auth/google"
