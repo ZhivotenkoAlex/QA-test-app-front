@@ -1,9 +1,11 @@
 import cat from '../../img/cat.svg';
 import s from './Results.module.scss';
 import { VictoryPie, VictoryLabel } from 'victory';
+import { useSelector } from 'react-redux';
 
 export default function Results() {
-  const rightAnswers = 8;
+  const rightAnswers = useSelector(state => state.questions.rightAnswer);
+  console.log(rightAnswers);
   const percentRightAnswers = Math.round((100 / 12) * rightAnswers);
   return (
     <div className={s.mainConteiner}>
