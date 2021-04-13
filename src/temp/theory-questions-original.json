@@ -53,13 +53,13 @@
       "question": "Provide correct example of Absolute XPath",
       "questionId": 5,
       "answers": [
-        "html/body/div/[3]/div/div/[1]/div/div/div[1]/div/input",
-        "html/body/div(3)/div/div(1)/div/div/div)1)/div/input",
-        "html\bodydiv[3]divdiv[1]divdivdiv[1]divinput/",
-        "html//body/div[3]/div/div[1]/div/div/div[1]/div/input",
-        "html/body/div[3]/div/div[1]/div/div/div[1]/div/input"
+        "html/body/div/[3]/div/div/[1] /div/div/div[1]/div/input",
+        "html/body/div(3)/div/div(1) /div/div/div)1)/div/input",
+        "html\bodydiv[3]divdiv[1] divdivdiv[1]divinput/",
+        "html//body/div[3]/div/div[1] /div/div/div[1]/div/input",
+        "html/body/div[3]/div/div[1] /div/div/div[1]/div/input"
       ],
-      "rightAnswer": "html/body/div[3]/div/div[1]/div/div/div[1]/div/input"
+      "rightAnswer": "html/body/div[3]/div/div[1] /div/div/div[1]/div/input"
     },
     {
       "question": "Most often, viewing elements in the Google Chrome browser on windows is launched by the button",
