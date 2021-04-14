@@ -1,5 +1,5 @@
 import { useEffect, Suspense, useState, lazy } from 'react';
-import { Switch, Redirect } from 'react-router-dom';
+import { Switch, Redirect, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { ToastContainer, Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
