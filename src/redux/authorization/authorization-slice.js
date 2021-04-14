@@ -9,7 +9,8 @@ import {
 
 const initialState = {
   user: { email: null },
-  token: null,
+  refreshToken: null,
+  accessToken: null,
   isFetchingCurrentUser: false,
   isLoggedIn: false,
   registerPending: false,
@@ -29,7 +30,8 @@ export const authSlice = createSlice({
     },
     [register.fulfilled](state, action) {
       state.user = { email: action.payload.data.user.email };
-      state.token = action.payload.data.token;
+      state.refreshToken = action.payload.data.refreshToken;
+      state.accessToken = action.payload.data.accessToken;
       state.isLoggedIn = true;
       state.registerPending = false;
     },
@@ -42,8 +44,9 @@ export const authSlice = createSlice({
       state.registerError = null;
     },
     [googleRegister.fulfilled](state, action) {
-      state.user = { email: action.payload.data.email };
-      state.token = action.payload.token;
+      state.user = { email: action.payload.email };
+      state.refreshToken = action.payload.data.refreshToken;
+      state.accessToken = action.payload.data.accessToken;
       state.isLoggedIn = true;
       state.registerPending = false;
     },
@@ -58,7 +61,8 @@ export const authSlice = createSlice({
     },
     [logIn.fulfilled](state, action) {
       state.user = { email: action.payload.data.user.email };
-      state.token = action.payload.data.token;
+      state.refreshToken = action.payload.data.refreshToken;
+      state.accessToken = action.payload.data.accessToken;
       state.isLoggedIn = true;
       state.logInPending = false;
     },
@@ -71,7 +75,8 @@ export const authSlice = createSlice({
     },
     [logOut.fulfilled](state) {
       state.user = { email: null };
-      state.token = null;
+      state.refreshToken = null;
+      state.accessToken = null;
       state.isLoggedIn = false;
       state.logOutPending = false;
     },
@@ -82,7 +87,9 @@ export const authSlice = createSlice({
       state.isFetchingCurrentUser = true;
     },
     [fetchCurrentUser.fulfilled](state, action) {
-      state.user = { email: action.payload.data.email };
+      state.user = { email: action.payload.email };
+      state.refreshToken = action.payload.data.refreshToken;
+      state.accessToken = action.payload.data.accessToken;
       state.isFetchingCurrentUser = false;
       state.isLoggedIn = true;
     },

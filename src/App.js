@@ -6,13 +6,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import Loader from './components/Loader/Loader';
 import PublicRoute from './components/Routes/PublicRoute';
 import PrivateRoute from './components/Routes/PrivateRoute';
-import {
-  getIsFetchingCurrentUser,
-  getIsLoggedIn,
-} from './redux/authorization/authorization-selectors';
+import { getIsFetchingCurrentUser } from './redux/authorization/authorization-selectors';
 import { fetchCurrentUser } from './redux/authorization/authorization-operations';
 import Navigation from './components/Navigation/Navigation';
-import ResultsPage from './components/Results/Results';
 import Footer from './components/Footer';
 import GoogleRedirect from './components/GoogleRedirect';
 
@@ -26,6 +22,9 @@ const AuthPage = lazy(() =>
 );
 const TestPage = lazy(() =>
   import('./views/TestPage/TestPage' /* webpackChunkName: "test-page" */),
+);
+const ResultsPage = lazy(() =>
+  import('./components/Results/Results' /* webpackChunkName: "results-page" */),
 );
 const UsefullInfo = lazy(() =>
   import(
@@ -41,7 +40,6 @@ function App() {
   const [answers, setAnswers] = useState([]);
 
   const isFetchingCurrentUser = useSelector(getIsFetchingCurrentUser);
-  const isLoggedIn = useSelector(getIsLoggedIn);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -50,53 +48,62 @@ function App() {
 
   return (
     <>
-      {isFetchingCurrentUser ? (
-        <Loader />
-      ) : (
-        <>
-          <Navigation />
-          <Switch>
-            <Suspense fallback={<Loader />}>
-              <PrivateRoute path="/" exact redirectTo="/auth">
-                <MainPageView
-                  setTypeQuestions={setTypeQuestions}
-                ></MainPageView>
-              </PrivateRoute>
+      <Navigation />
+      <Switch>
+        <Suspense fallback={<Loader />}>
+          <PrivateRoute path="/" exact redirectTo="/auth">
+            <>
+              <MainPageView setTypeQuestions={setTypeQuestions}></MainPageView>
+              <Footer />
+            </>
+          </PrivateRoute>
 
-              <PublicRoute path="/auth" restricted redirectTo="/">
-                <AuthPage />
-              </PublicRoute>
+          <PublicRoute path="/auth" restricted redirectTo="/">
+            <>
+              <AuthPage />
+              <Footer />
+            </>
+          </PublicRoute>
 
-              <PublicRoute path="/google-redirect" restricted redirectTo="/">
-                <GoogleRedirect />
-              </PublicRoute>
+          <PublicRoute path="/google-redirect" restricted redirectTo="/">
+            <GoogleRedirect />
+          </PublicRoute>
 
-              <PrivateRoute path="/test" redirectTo="/auth">
-                <TestPage
-                  typeQuestions={typeQuestions}
-                  setTypeQuestions={setTypeQuestions}
-                  answers={answers}
-                  setAnswers={setAnswers}
-                ></TestPage>
-              </PrivateRoute>
+          <PrivateRoute path="/test" redirectTo="/auth">
+            <>
+              <TestPage
+                typeQuestions={typeQuestions}
+                setTypeQuestions={setTypeQuestions}
+                answers={answers}
+                setAnswers={setAnswers}
+              ></TestPage>
+              <Footer />
+            </>
+          </PrivateRoute>
 
-              <PublicRoute path="/results" redirectTo="/auth">
-                {<ResultsPage answers={answers} setAnswers={setAnswers} />}
-              </PublicRoute>
+          <PrivateRoute path="/results" redirectTo="/auth">
+            <>
+              {<ResultsPage answers={answers} setAnswers={setAnswers} />}
+              <Footer />
+            </>
+          </PrivateRoute>
 
-              <PrivateRoute path="/useful-info" redirectTo="/auth">
-                <UsefullInfo />
-              </PrivateRoute>
+          <PrivateRoute path="/useful-info" redirectTo="/auth">
+            <>
+              <UsefullInfo />
+              <Footer />
+            </>
+          </PrivateRoute>
 
-              <PublicRoute path="/contacts">
-                <ContactsPage />
-              </PublicRoute>
-            </Suspense>
-          </Switch>
-          <ToastContainer transition={Flip} />
-          <Footer />
-        </>
-      )}
+          <PublicRoute path="/contacts">
+            <>
+              <ContactsPage />
+              <Footer />
+            </>
+          </PublicRoute>
+        </Suspense>
+      </Switch>
+      <ToastContainer transition={Flip} />
     </>
   );
 }
