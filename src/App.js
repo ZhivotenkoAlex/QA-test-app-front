@@ -1,5 +1,5 @@
 import { useEffect, Suspense, useState, lazy } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Redirect, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { ToastContainer, Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -63,14 +63,11 @@ function App() {
                 ></MainPageView>
               </PrivateRoute>
 
-              <PublicRoute path="/auth/google" restricted redirectTo="/">
-                <GoogleRedirect />
-              </PublicRoute>
-
-              <PublicRoute path="/auth" exact restricted redirectTo="/">
+              <PublicRoute path="/auth" restricted redirectTo="/">
                 <AuthPage />
               </PublicRoute>
-              <PublicRoute path="/auth/google" restricted redirectTo="/">
+
+              <PublicRoute path="/google-redirect" restricted redirectTo="/">
                 <GoogleRedirect />
               </PublicRoute>
 
@@ -84,10 +81,10 @@ function App() {
               </PrivateRoute>
 
               <PublicRoute path="/results" redirectTo="/auth">
-                {<ResultsPage />}
+                {<ResultsPage answers={answers} setAnswers={setAnswers} />}
               </PublicRoute>
 
-              <PrivateRoute path="/usefull-info" redirectTo="/auth">
+              <PrivateRoute path="/useful-info" redirectTo="/auth">
                 <UsefullInfo />
               </PrivateRoute>
 
