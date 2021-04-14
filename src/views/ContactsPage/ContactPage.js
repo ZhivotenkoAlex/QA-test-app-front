@@ -20,15 +20,15 @@ const ContactsPage = () => {
               className={s.personPhoto}
             />
             <div className={s.aboutPerson}>
-            <p className={s.personName}>{name}</p>
-            <button
-              className={s.infoBtn}
-              onClick={() => {
-                history.push(`${path}/${id}`);
-              }}
-            >
-              More information
-            </button>
+              <p className={s.personName}>{name}</p>
+              <button
+                className={s.infoBtn}
+                onClick={() => {
+                  history.push(`${path}/${id}`);
+                }}
+              >
+                More information
+              </button>
             </div>
           </li>
         ))}
@@ -38,7 +38,7 @@ const ContactsPage = () => {
           <ContactCard members={members} />
         </Route>
       </Suspense>
-      </section>
+    </section>
   );
 };
 export default ContactsPage;
