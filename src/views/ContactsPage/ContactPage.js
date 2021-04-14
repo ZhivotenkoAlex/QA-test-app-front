@@ -8,7 +8,7 @@ const ContactsPage = () => {
   const { path } = useRouteMatch();
   const history = useHistory();
   return (
-    <section className={s.team}>
+    <section className={`${s.team} ${s.container}`}>
       <h4 className={s.teamTitle}>Our team</h4>
       <hr className={s.teamLine} />
       <ul className={s.teamList}>
@@ -17,17 +17,19 @@ const ContactsPage = () => {
             <img
               src={imgUrl ?? defaultImg}
               alt={name}
-              className={s.onePersonPhoto}
+              className={s.personPhoto}
             />
-            <span className={s.personName}>{name}</span>
+            <div className={s.aboutPerson}>
+            <p className={s.personName}>{name}</p>
             <button
               className={s.infoBtn}
               onClick={() => {
                 history.push(`${path}/${id}`);
               }}
             >
-              Info
+              More information
             </button>
+            </div>
           </li>
         ))}
       </ul>
@@ -36,7 +38,7 @@ const ContactsPage = () => {
           <ContactCard members={members} />
         </Route>
       </Suspense>
-    </section>
+      </section>
   );
 };
 export default ContactsPage;
