@@ -1,5 +1,5 @@
 import { useEffect, Suspense, useState, lazy } from 'react';
-import { Switch, Redirect, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { ToastContainer, Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -91,10 +91,6 @@ function App() {
               <PublicRoute path="/contacts">
                 <ContactsPage />
               </PublicRoute>
-
-              <Route>
-                {isLoggedIn ? <Redirect to="/" /> : <Redirect to="/auth" />}
-              </Route>
             </Suspense>
           </Switch>
           <ToastContainer transition={Flip} />
