@@ -47,7 +47,7 @@ export default function Results({ answers, setAnswers }) {
     <div className={s.mainConteiner}>
       <h2 className={s.title}>Results</h2>
       <p className={s.textContent1}>[ Testing theory_]</p>
-      <div className={s.lineHorizontal}></div>
+     <hr className={s.lineHorizontal} />
       <div className={s.imgGraf}>
         <VictoryPie
           width={500}
@@ -60,7 +60,8 @@ export default function Results({ answers, setAnswers }) {
           colorScale={['#FF6B01', '#D7D7D7']}
           style={{
             labels: {
-              fontSize: 25,
+              fontSize: 23,
+              fontWeight: 500,
               fill: '#000000',
             },
           }}
@@ -83,7 +84,7 @@ export default function Results({ answers, setAnswers }) {
         <p>
           Correct answers - <span>{rightAnswers}</span>
         </p>
-        <div className={s.lineVertical}></div>
+        <span className={s.lineVertical}></span>
         <p>
           Total questions - <span>12</span>
         </p>
