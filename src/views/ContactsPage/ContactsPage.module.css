@@ -3,6 +3,7 @@
   justify-content: center;
   flex-direction: column;
   text-align: center;
+  border-bottom: 1px solid #e2e3e5;
 }
 .teamTitle {
   font-weight: 700;
@@ -19,7 +20,7 @@
   display: flex;
   justify-content: center;
   flex-direction: row;
-  flex-wrap: wrap ;
+  flex-wrap: wrap;
   align-items: flex-start;
   margin: -10px;
   list-style: none;
@@ -36,54 +37,43 @@
   object-fit: cover;
 }
 .aboutPerson {
-  text-align: left;
+  position: relative;
+  text-align: center;
   background-color: var(--primaryWhiteColor);
   filter: drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.05));
 }
 .personName {
-  margin-bottom: 6px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-size: 12px;
   line-height: 1;
 }
-.infoBtn{display: block;
-margin-left: auto;
-margin-right: auto;
+.infoBtn {
+  position: absolute;
+  bottom: 0;
 
-color: var(--primaryBlackColor);
-background-color: var(--primaryWhiteColor);
-border: 1px solid #bbbbbb;
-outline: none;
+  display: inline-block;
+  padding: 12px 10px;
+  width: 165px;
+  height: 48px;
 
-font-weight: 700;
-letter-spacing: 0.02em;
-text-transform: uppercase;
+  color: var(--primaryWhiteColor);
+  background-color: var(--OrangeColor);
+  border: none;
 
-cursor: pointer;
-transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  font-size: 14px;
+  line-height: 1.2;
+
+  cursor: pointer;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .infoBtn:focus,
 .infoBtn:hover {
-  color: var(--primaryWhiteColor);
-  background-color: var(--OrangeColor);
-  border: 1px solid var(--OrangeColor);
+  transform: scale(1.06);
 }
-
-.personPosition {
-  margin-bottom: 10px;
-  color: var(--textColor);
-  font-weight: 400;
-  letter-spacing: 0.02em;
-  font-size: 12px;
-  line-height: 1;
-}
-.personText {
-  font-weight: 400;
-  letter-spacing: 0.02em;
-}
-
 
 @media screen and (max-width: 767px) {
   .team {
@@ -106,11 +96,12 @@ transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
     height: 244px;
   }
   .aboutPerson {
+    height: 115px;
     padding: 20px 20px 22px 20px;
   }
-  .personText {
-    font-size: 12px;
-    line-height: 1.3;
+  .infoBtn {
+    right: 57px;
+    bottom: 22px;
   }
 }
 
@@ -124,7 +115,7 @@ transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
     margin-bottom: 22px;
   }
   .teamLine {
-    width: 130px;
+    width: 322px;
     margin-bottom: 39px;
   }
   .teamItem {
@@ -135,11 +126,12 @@ transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
     height: 244px;
   }
   .aboutPerson {
+    height: 115px;
     padding: 21px 30px;
   }
-  .personText {
-    font-size: 14px;
-    line-height: 1.14;
+  .infoBtn {
+    bottom: 21px;
+    right: 94px;
   }
 }
 
@@ -156,8 +148,8 @@ transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
     height: 244px;
   }
   .aboutPerson {
+    height: 128px;
     padding: 21px 29px;
-    height: 162px;
   }
   .personName {
     font-weight: 700;
@@ -166,8 +158,36 @@ transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
     font-size: 12px;
     line-height: 1.3;
   }
-  .personText {
-    font-size: 12px;
-    line-height: 1.3;
+
+  .infoBtn {
+    bottom: 21px;
+    right: 34px;
+  }
+}
+
+/* Container */
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@media screen and (max-width: 767px) {
+  .container {
+    max-width: 320px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 768px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    width: 1280px;
   }
 }
