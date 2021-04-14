@@ -18,7 +18,7 @@ async function fetchTheoryQuestions() {
 async function sendChekResults(result, curentTest) {
   const { data } = await axios.post(
     curentTest === 'tech'
-      ? '/test-tech/test-tech/right-answers'
+      ? '/test-tech/right-answers'
       : '/test-theory/right-answers',
     result,
   );
