@@ -46,7 +46,7 @@ export default function UserMenu() {
           </NavLink>
         </nav>
 
-        <Avatar className={s.avatart}>{nameInAvatar}</Avatar>
+        <Avatar className={s.MuiAvatar}>{nameInAvatar}</Avatar>
         <p className={s.name}>{userName}</p>
 
         <button onClick={() => dispatch(logOut())} className={s.button}>
