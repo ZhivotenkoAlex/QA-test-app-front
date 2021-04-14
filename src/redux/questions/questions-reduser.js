@@ -8,12 +8,17 @@ const techQustions = createReducer([], {
 const theoryQustions = createReducer([], {
   [action.fetchQuestionsSuccess]: (state, action) => (state = action.payload),
 });
-const rightAnswer = createReducer(0, {
-  [action.resultRightAnswer]: (_, action) => action.payload,
+const rightAnswer = createReducer(null, {
+  [action.getRightAnswersSuccess]: (state, action) => (state = action.payload),
+});
+
+const curentTest = createReducer('', {
+  [action.test]: (state, action) => (state = action.payload),
 });
 
 export default combineReducers({
   techQustions,
   theoryQustions,
   rightAnswer,
+  curentTest,
 });
