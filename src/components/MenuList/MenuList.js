@@ -1,21 +1,16 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import s from '../UserMenu/UserMenu.module.css';
 import styled from 'styled-components';
+import { logOut } from '../../redux/authorization/authorization-operations';
+import sprite from '../../img/sprite.svg';
 
 const NAV = styled.nav`
   @media (max-width: 767px) {
-    background-color: #f5f6fb;
-    position: absolute;
-    top: 74px;
-    right: 0;
-    height: 100vh;
-    width: 100vw;
     transform: ${({ showMenu }) =>
       showMenu ? 'translateY(1%)' : 'translateY(0)'};
   }
-  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 20;
   opacity: ${({ showMenu }) => (showMenu ? '1' : '0')};
   @media (min-width: 768px) {
     opacity: 1;
@@ -23,10 +18,16 @@ const NAV = styled.nav`
 `;
 
 export default function UserMenu({ showMenu }) {
+  const dispatch = useDispatch();
   return (
     <>
       <NAV className={s.navigation} showMenu={showMenu}>
-        <NavLink exact to="/" className={s.link} activeClassName={s.activeLink}>
+        <NavLink
+          exact
+          to="/"
+          className={`${s.link} ${s.current}`}
+          activeClassName={s.activeLink}
+        >
           Home
         </NavLink>
         <NavLink
@@ -45,6 +46,11 @@ export default function UserMenu({ showMenu }) {
         >
           Contacts
         </NavLink>
+        <button onClick={() => dispatch(logOut())} className={s.button}>
+          <svg className={s.iconExit}>
+            <use href={sprite + '#exit'} />
+          </svg>
+        </button>
       </NAV>
     </>
   );
