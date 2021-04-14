@@ -1,4 +1,6 @@
 import { Suspense } from 'react';
+import { Img } from 'react-image';
+import Loader from '../../components/Loader/Loader';
 import { Route, useRouteMatch, useHistory } from 'react-router-dom';
 import s from './ContactsPage.module.css';
 import ContactCard from './ContactCard';
@@ -14,10 +16,10 @@ const ContactsPage = () => {
       <ul className={s.teamList}>
         {members.map(({ id, name, imgUrl }) => (
           <li key={id} className={s.teamItem}>
-            <img
+            <Img
               src={imgUrl ?? defaultImg}
-              alt={name}
               className={s.personPhoto}
+              loader={<Loader />}
             />
             <div className={s.aboutPerson}>
               <p className={s.personName}>{name}</p>
@@ -33,7 +35,7 @@ const ContactsPage = () => {
           </li>
         ))}
       </ul>
-      <Suspense fallback={<p>Loader</p>}>
+      <Suspense fallback={<Loader />}>
         <Route path={`${path}/:memberId`}>
           <ContactCard members={members} />
         </Route>

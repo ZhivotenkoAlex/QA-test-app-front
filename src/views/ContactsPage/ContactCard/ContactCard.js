@@ -1,6 +1,8 @@
-import { Suspense, useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Img } from 'react-image';
+import Loader from '../../../components/Loader/Loader';
 import s from './ContactCard.module.css';
 import defaultImg from '../../../img/default-user.jpg';
 
@@ -19,20 +21,14 @@ const ContactCard = ({ members }) => {
   return (
     <div className={`${s.onePersonContainer} ${s.container}`}>
       <hr className={s.personLine} />
-      <div className={s.onePerson}>
-        <Suspense
-          fallback={
-            <img src={defaultImg} alt={name} className={s.onePersonPhoto} />
-          }
-        >
-          <img
-            src={imgUrl ?? defaultImg}
-            alt={name}
-            className={s.onePersonPhoto}
-          />
-        </Suspense>
+      <div className={s.onePerson} ref={refToScroll}>
+        <Img
+          src={imgUrl ?? defaultImg}
+          className={s.personPhoto}
+          loader={<Loader />}
+        />
 
-        <div className={s.aboutOnePerson} ref={refToScroll}>
+        <div className={s.aboutOnePerson}>
           <p className={s.onePersonName}>{name}</p>
           <p className={s.onePersonPosition}>{title}</p>
           <p className={s.onePersonText} id="descr">
