@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import s from '../UserMenu/UserMenu.module.css';
@@ -19,6 +19,11 @@ const NAV = styled.nav`
 
 export default function UserMenu({ showMenu }) {
   const dispatch = useDispatch();
+
+  const clickMenuLink = e => {
+    console.log('click ', showMenu);
+  };
+
   return (
     <>
       <NAV className={s.navigation} showMenu={showMenu}>
@@ -27,6 +32,7 @@ export default function UserMenu({ showMenu }) {
           to="/"
           className={`${s.link} ${s.current}`}
           activeClassName={s.activeLink}
+          onClick={clickMenuLink}
         >
           Home
         </NavLink>
@@ -46,11 +52,11 @@ export default function UserMenu({ showMenu }) {
         >
           Contacts
         </NavLink>
-        <button onClick={() => dispatch(logOut())} className={s.button}>
+        <NavLink to="/" onClick={() => dispatch(logOut())} className={s.link}>
           <svg className={s.iconExit}>
             <use href={sprite + '#exit'} />
           </svg>
-        </button>
+        </NavLink>
       </NAV>
     </>
   );
