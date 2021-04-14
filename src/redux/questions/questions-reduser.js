@@ -13,7 +13,7 @@ const rightAnswer = createReducer(null, {
 });
 
 const curentTest = createReducer('', {
-  [action.test]: (_, action) => action.payload,
+  [action.test]: (state, action) => (state = action.payload),
 });
 
 export default combineReducers({
