@@ -63,14 +63,11 @@ function App() {
                 ></MainPageView>
               </PrivateRoute>
 
-              <PublicRoute path="/auth/google" restricted redirectTo="/">
-                <GoogleRedirect />
-              </PublicRoute>
-
-              <PublicRoute path="/auth" exact restricted redirectTo="/">
+              <PublicRoute path="/auth" restricted redirectTo="/">
                 <AuthPage />
               </PublicRoute>
-              <PublicRoute path="/auth/google" restricted redirectTo="/">
+
+              <PublicRoute path="/google-redirect" restricted redirectTo="/">
                 <GoogleRedirect />
               </PublicRoute>
 
