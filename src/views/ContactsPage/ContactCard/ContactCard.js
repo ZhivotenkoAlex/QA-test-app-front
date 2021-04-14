@@ -11,6 +11,7 @@ const ContactCard = ({ members }) => {
   );
   return (
     <div className={`${s.onePersonContainer} ${s.container}`}>
+      <hr className={s.personLine} />
       <div className={s.onePerson}>
         <Suspense
           fallback={
