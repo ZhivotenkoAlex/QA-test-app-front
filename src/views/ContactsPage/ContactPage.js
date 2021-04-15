@@ -9,6 +9,7 @@ import { members } from './participants.json';
 const ContactsPage = () => {
   const { path } = useRouteMatch();
   const history = useHistory();
+  window.scroll(0, 0);
   return (
     <section className={`${s.team} ${s.container}`}>
       <h4 className={s.teamTitle}>Our team</h4>
