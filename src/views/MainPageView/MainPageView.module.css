@@ -53,10 +53,11 @@
 }
 
 .homeButton {
-  display: inline-block;
+  display: block;
   color: var(--primaryWhiteColor);
   font-weight: 800;
-  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
   letter-spacing: 0.02em;
   border: none;
   filter: drop-shadow(0px 4px 15px rgba(18, 29, 46, 0.15));
@@ -112,15 +113,18 @@
   }
 
   .homeButton {
-    width: 280px;
+    /* width: 280px; */
     height: 212px;
-    padding: 60px 51px;
     font-size: 24px;
     line-height: 1.2;
   }
 
   .training {
+    padding: 60px 60px 94px 60px;
     margin-bottom: 20px;
+  }
+  .theory {
+    padding: 63px 94px 91px 95px;
   }
 }
 
@@ -178,12 +182,13 @@
     margin-bottom: 84px;
   }
 
+  .linkContainer {
+    display: flex;
+    justify-content: space-between;
+  }
+
   .homeButton {
     width: 397px;
     margin: 0;
-  }
-
-  .training {
-    margin-right: 20px;
   }
 }

@@ -24,7 +24,7 @@ const MainPageView = ({ setTypeQuestions }) => {
         <hr className={s.homeLine} />
         <p className={s.homeName}>Linus Torvalds</p>
         <p className={s.homeCompany}>Linux kernel creator, hacker, 1969</p>
-
+        <div className={s.linkContainer}>
         <Link
           id={testTypes.tech}
           className={`${s.homeButton} ${s.training}`}
@@ -57,7 +57,8 @@ const MainPageView = ({ setTypeQuestions }) => {
           <svg className={s.arrow} width="24" height="24">
             <use href={sprite + '#arrow'}></use>
           </svg>
-        </Link>
+          </Link>
+          </div>
       </section>
     </div>
   );
