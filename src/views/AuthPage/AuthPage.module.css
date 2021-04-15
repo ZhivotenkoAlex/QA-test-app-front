@@ -51,7 +51,7 @@
 
 @media screen and (max-width: 767px) {
   .homeLogin {
-    padding: 39px 20px 50px 20px;
+    padding: 39px 0 50px 0;
   }
 
   .homeLoginTitle {
@@ -85,7 +85,7 @@
 
 @media screen and (min-width: 768px) {
   .homeLogin {
-    padding: 80px 114px 70px 114px;
+    padding: 80px 94px 70px 94px;
   }
 
   .homeLoginTitle {
@@ -95,6 +95,8 @@
   }
 
   .homeText {
+    display: inline-block;
+    width: 530px;
     font-size: 16px;
     line-height: 2.25;
     margin-bottom: 50px;
@@ -106,7 +108,7 @@
   }
 
   .formRegister {
-    padding: 62px 57px;
+    padding: 62px 57px 42px 57px;
     text-align: left;
     width: 539px;
   }
@@ -121,11 +123,12 @@
 @media screen and (min-width: 1280px) {
   .homeLogin {
     display: flex;
-    padding: 99px 125px;
+    justify-content: space-between;
+    padding: 99px 105px;
   }
 
   .proTest {
-    margin-right: 105px;
+    /* margin-right: 105px; */
   }
 
   .homeLoginTitle {
@@ -134,6 +137,8 @@
   }
 
   .homeText {
+    display: inline-block;
+    width: 420px;
     font-size: 18px;
     line-height: 2;
     margin-bottom: 0;
