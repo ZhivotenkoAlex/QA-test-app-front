@@ -17,7 +17,7 @@ const NAV = styled.nav`
   display: ${({ showMenu }) => (showMenu ? 'block' : 'none')};
   @media (min-width: 768px) {
     opacity: 1;
-    display: block;
+    display: flex;
   }
 `;
 
