@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
 import MenuList from '../MenuList/MenuList';
-import s from '../UserMenu/UserMenu.module.css';
+import s from '../Menu/Menu.module.css';
 import sprite from '../../img/sprite.svg';
 import { Avatar } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { getUserEmail } from '../../redux/authorization/authorization-selectors';
 
 export default function Menu() {
+  const [showMenu, setshowMenu] = useState(false);
   const userEmail = useSelector(getUserEmail);
-
   const userName = userEmail?.split('@')[0];
   const nameInAvatar = userName?.[0].toUpperCase();
-  const [showMenu, setshowMenu] = useState(false);
 
   return (
     <>
+      <div className={`${s.avatar} ${s.mobile}`}>{nameInAvatar}</div>
       <MenuList showMenu={showMenu} />
-      <div className={s.avatar}>{nameInAvatar}</div>
 
       <button
         className={s.buttonMobile}

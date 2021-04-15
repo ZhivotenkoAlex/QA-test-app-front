@@ -1,0 +1,64 @@
+.buttonMobile {
+  border: none;
+  outline: none;
+  padding: 38px 30px 38px 30px;
+  margin-left: 20px;
+  border-left: 1px solid #e2e3e5;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.iconMobileMenu {
+  position: absolute;
+  transform: translateX(-45%) translateY(-45%);
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.iconCloseMenu {
+  position: absolute;
+  transform: translateX(-45%) translateY(-45%);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.avatar.mobile {
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 14px;
+  line-height: 1.14;
+  color: #555555;
+  background-color: #ffffff;
+  box-shadow: 0px 1px 1px rgba(18, 29, 46, 0.1);
+  margin-left: 5px;
+}
+
+@media screen and (min-width: 768px) {
+  .buttonMobile {
+    display: none;
+  }
+
+  .avatar.mobile {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 270px) {
+  .buttonMobile {
+    margin-left: 5px;
+  }
+}
+
+@media screen and (max-width: 240px) {
+  .avatar.mobile {
+    display: none;
+  }
+}
