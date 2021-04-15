@@ -10,8 +10,6 @@ import sprite from '../../img/sprite.svg';
 
 const NAV = styled.nav`
   @media (max-width: 767px) {
-    transform: ${({ showMenu }) =>
-      showMenu ? 'translateY(1%)' : 'translateY(0)'};
   }
   opacity: ${({ showMenu }) => (showMenu ? '1' : '0')};
   display: ${({ showMenu }) => (showMenu ? 'block' : 'none')};
@@ -26,6 +24,9 @@ export default function UserMenu({ showMenu, setShowM }) {
   const userEmail = useSelector(getUserEmail);
   const userName = userEmail?.split('@')[0];
   const nameInAvatar = userName?.[0].toUpperCase();
+
+  //забрати скрол якщо відкрите мобільне меню
+  document.body.style.overflowY = showMenu ? 'hidden' : 'scroll';
 
   const clickMenuLink = e => {
     setShowM(!showMenu);
