@@ -47,7 +47,7 @@ const AuthPage = () => {
 
           <a
             className={styles.buttonGoogleLink}
-            href="http://localhost:3000/api/auth/google"
+            href="https://safe-bayou-94848.herokuapp.com/api/auth/google"
           >
             <button className={styles.buttonGoogle}></button>
           </a>

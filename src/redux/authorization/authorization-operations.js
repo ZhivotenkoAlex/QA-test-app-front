@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'http://localhost:3000/api';
+axios.defaults.baseURL = 'https://safe-bayou-94848.herokuapp.com/api';
 
 const token = {
   set(token) {
@@ -119,12 +119,6 @@ export const refreshTokens = createAsyncThunk(
       const { data } = await axios.get('auth/refresh-token');
 
       token.set(data.data.accessToken);
-
-      // requestConfig.headers['Authorization'] =
-      //   'Bearer ' + data.data.accessToken;
-      // requestConfig.baseURL = undefined;
-
-      // await axios.request(requestConfig);
 
       return { ...data };
     } catch (error) {

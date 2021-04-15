@@ -48,14 +48,13 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   axios.interceptors.response.use(
     response => response,
     error => {
       const status = error.response ? error.response.status : null;
-
-      console.log(error.response.config.headers.Authorization);
 
       if (status === 401 && error.response.config.headers.Authorization) {
         dispatch(refreshTokens(error.config));
