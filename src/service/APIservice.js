@@ -1,17 +1,13 @@
 import axios from 'axios';
 
 async function fetchTechQuestions() {
-  const response = await fetch(
-    'https://safe-bayou-94848.herokuapp.com/api/test-tech',
-  );
+  const response = await fetch('http://localhost:3000/api/test-tech');
 
   return await response.json();
 }
 
 async function fetchTheoryQuestions() {
-  const response = await fetch(
-    'https://safe-bayou-94848.herokuapp.com/api/test-theory',
-  );
+  const response = await fetch('http://localhost:3000/api/test-theory');
 
   return await response.json();
 }

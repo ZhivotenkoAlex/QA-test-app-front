@@ -5,6 +5,7 @@ import {
   logOut,
   fetchCurrentUser,
   googleRegister,
+  refreshTokens,
 } from './authorization-operations';
 
 const initialState = {
@@ -18,6 +19,8 @@ const initialState = {
   logInPending: false,
   logInError: null,
   logOutPending: false,
+  logOutError: null,
+  refreshError: null,
 };
 
 export const authSlice = createSlice({
@@ -45,8 +48,8 @@ export const authSlice = createSlice({
     },
     [googleRegister.fulfilled](state, action) {
       state.user = { email: action.payload.email };
-      state.refreshToken = action.payload.data.refreshToken;
-      state.accessToken = action.payload.data.accessToken;
+      state.refreshToken = action.payload.refreshToken;
+      state.accessToken = action.payload.accessToken;
       state.isLoggedIn = true;
       state.registerPending = false;
     },
@@ -72,6 +75,7 @@ export const authSlice = createSlice({
     },
     [logOut.pending](state) {
       state.logOutPending = true;
+      state.logOutError = null;
     },
     [logOut.fulfilled](state) {
       state.user = { email: null };
@@ -80,8 +84,9 @@ export const authSlice = createSlice({
       state.isLoggedIn = false;
       state.logOutPending = false;
     },
-    [logOut.rejected](state) {
+    [logOut.rejected](state, action) {
       state.logOutPending = false;
+      state.logOutError = action.payload;
     },
     [fetchCurrentUser.pending](state) {
       state.isFetchingCurrentUser = true;
@@ -95,6 +100,13 @@ export const authSlice = createSlice({
     },
     [fetchCurrentUser.rejected](state) {
       state.isFetchingCurrentUser = false;
+    },
+    [refreshTokens.fulfilled](state, action) {
+      state.refreshToken = action.payload.data.refreshToken;
+      state.accessToken = action.payload.data.accessToken;
+    },
+    [refreshTokens.rejected](state, action) {
+      state.refreshError = action.payload;
     },
   },
 });

@@ -33,15 +33,19 @@ export const register = createAsyncThunk(
 export const googleRegister = createAsyncThunk(
   'auth/googleRegister',
   async (credentials, thunkAPI) => {
-    token.set(credentials.token);
+    token.set(credentials.access);
     try {
-      const { data } = await axios.get('auth/refresh-token');
+      // const { data } = await axios.get('auth/refresh-token');
 
-      token.set(data.data.accessToken);
+      // token.set(data.data.accessToken);
 
-      const response = await axios.get('user/info');
+      const { data } = await axios.get('user/info');
 
-      return { ...data, email: response.data.data.email };
+      return {
+        refreshToken: credentials.token,
+        accessToken: credentials.access,
+        email: data.data.email,
+      };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -66,11 +70,13 @@ export const logIn = createAsyncThunk(
   },
 );
 
-export const logOut = createAsyncThunk('auth/logOut', async () => {
+export const logOut = createAsyncThunk('auth/logOut', async (_, thunkAPI) => {
   try {
     await axios.post('/auth/logout');
     token.unset();
-  } catch (error) {}
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
 });
 
 export const fetchCurrentUser = createAsyncThunk(
@@ -91,7 +97,36 @@ export const fetchCurrentUser = createAsyncThunk(
 
       const response = await axios.get('user/info');
 
-      return { ...data, email: response.data.email };
+      return { ...data, email: response.data.data.email };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+
+export const refreshTokens = createAsyncThunk(
+  'auth/tokens',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.refreshToken;
+
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue();
+    }
+
+    token.set(persistedToken);
+    try {
+      const { data } = await axios.get('auth/refresh-token');
+
+      token.set(data.data.accessToken);
+
+      // requestConfig.headers['Authorization'] =
+      //   'Bearer ' + data.data.accessToken;
+      // requestConfig.baseURL = undefined;
+
+      // await axios.request(requestConfig);
+
+      return { ...data };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
