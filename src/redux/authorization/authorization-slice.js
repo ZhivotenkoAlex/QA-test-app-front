@@ -5,11 +5,13 @@ import {
   logOut,
   fetchCurrentUser,
   googleRegister,
+  refreshTokens,
 } from './authorization-operations';
 
 const initialState = {
   user: { email: null },
-  token: null,
+  refreshToken: null,
+  accessToken: null,
   isFetchingCurrentUser: false,
   isLoggedIn: false,
   registerPending: false,
@@ -17,6 +19,8 @@ const initialState = {
   logInPending: false,
   logInError: null,
   logOutPending: false,
+  logOutError: null,
+  refreshError: null,
 };
 
 export const authSlice = createSlice({
@@ -29,7 +33,8 @@ export const authSlice = createSlice({
     },
     [register.fulfilled](state, action) {
       state.user = { email: action.payload.data.user.email };
-      state.token = action.payload.data.token;
+      state.refreshToken = action.payload.data.refreshToken;
+      state.accessToken = action.payload.data.accessToken;
       state.isLoggedIn = true;
       state.registerPending = false;
     },
@@ -42,8 +47,9 @@ export const authSlice = createSlice({
       state.registerError = null;
     },
     [googleRegister.fulfilled](state, action) {
-      state.user = { email: action.payload.data.email };
-      state.token = action.payload.token;
+      state.user = { email: action.payload.email };
+      state.refreshToken = action.payload.refreshToken;
+      state.accessToken = action.payload.accessToken;
       state.isLoggedIn = true;
       state.registerPending = false;
     },
@@ -58,7 +64,8 @@ export const authSlice = createSlice({
     },
     [logIn.fulfilled](state, action) {
       state.user = { email: action.payload.data.user.email };
-      state.token = action.payload.data.token;
+      state.refreshToken = action.payload.data.refreshToken;
+      state.accessToken = action.payload.data.accessToken;
       state.isLoggedIn = true;
       state.logInPending = false;
     },
@@ -68,26 +75,38 @@ export const authSlice = createSlice({
     },
     [logOut.pending](state) {
       state.logOutPending = true;
+      state.logOutError = null;
     },
     [logOut.fulfilled](state) {
       state.user = { email: null };
-      state.token = null;
+      state.refreshToken = null;
+      state.accessToken = null;
       state.isLoggedIn = false;
       state.logOutPending = false;
     },
-    [logOut.rejected](state) {
+    [logOut.rejected](state, action) {
       state.logOutPending = false;
+      state.logOutError = action.payload;
     },
     [fetchCurrentUser.pending](state) {
       state.isFetchingCurrentUser = true;
     },
     [fetchCurrentUser.fulfilled](state, action) {
-      state.user = { email: action.payload.data.email };
+      state.user = { email: action.payload.email };
+      state.refreshToken = action.payload.data.refreshToken;
+      state.accessToken = action.payload.data.accessToken;
       state.isFetchingCurrentUser = false;
       state.isLoggedIn = true;
     },
     [fetchCurrentUser.rejected](state) {
       state.isFetchingCurrentUser = false;
+    },
+    [refreshTokens.fulfilled](state, action) {
+      state.refreshToken = action.payload.data.refreshToken;
+      state.accessToken = action.payload.data.accessToken;
+    },
+    [refreshTokens.rejected](state, action) {
+      state.refreshError = action.payload;
     },
   },
 });

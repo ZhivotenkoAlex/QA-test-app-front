@@ -1,18 +1,18 @@
 import { useEffect, Suspense, useState, lazy } from 'react';
 import { Switch } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
 import { ToastContainer, Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from './components/Loader/Loader';
 import PublicRoute from './components/Routes/PublicRoute';
 import PrivateRoute from './components/Routes/PrivateRoute';
+import { getIsFetchingCurrentUser } from './redux/authorization/authorization-selectors';
 import {
-  getIsFetchingCurrentUser,
-  getIsLoggedIn,
-} from './redux/authorization/authorization-selectors';
-import { fetchCurrentUser } from './redux/authorization/authorization-operations';
+  fetchCurrentUser,
+  refreshTokens,
+} from './redux/authorization/authorization-operations';
 import Navigation from './components/Navigation/Navigation';
-import ResultsPage from './components/Results/Results';
 import Footer from './components/Footer';
 import GoogleRedirect from './components/GoogleRedirect';
 
@@ -26,6 +26,9 @@ const AuthPage = lazy(() =>
 );
 const TestPage = lazy(() =>
   import('./views/TestPage/TestPage' /* webpackChunkName: "test-page" */),
+);
+const ResultsPage = lazy(() =>
+  import('./components/Results/Results' /* webpackChunkName: "results-page" */),
 );
 const UsefullInfo = lazy(() =>
   import(
@@ -41,12 +44,31 @@ function App() {
   const [answers, setAnswers] = useState([]);
 
   const isFetchingCurrentUser = useSelector(getIsFetchingCurrentUser);
-  const isLoggedIn = useSelector(getIsLoggedIn);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
-  }, [dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  axios.interceptors.response.use(
+    response => response,
+    error => {
+      const status = error.response ? error.response.status : null;
+
+      if (status === 401 && error.response.config.headers.Authorization) {
+        dispatch(refreshTokens(error.config));
+
+        error.config.headers['Authorization'] =
+          axios.defaults.headers.common.Authorization;
+        error.config.baseURL = undefined;
+
+        return axios.request(error.config);
+      }
+
+      return Promise.reject(error);
+    },
+  );
 
   return (
     <>
@@ -58,13 +80,19 @@ function App() {
           <Switch>
             <Suspense fallback={<Loader />}>
               <PrivateRoute path="/" exact redirectTo="/auth">
-                <MainPageView
-                  setTypeQuestions={setTypeQuestions}
-                ></MainPageView>
+                <>
+                  <MainPageView
+                    setTypeQuestions={setTypeQuestions}
+                  ></MainPageView>
+                  <Footer />
+                </>
               </PrivateRoute>
 
               <PublicRoute path="/auth" restricted redirectTo="/">
-                <AuthPage />
+                <>
+                  <AuthPage />
+                  <Footer />
+                </>
               </PublicRoute>
 
               <PublicRoute path="/google-redirect" restricted redirectTo="/">
@@ -72,29 +100,40 @@ function App() {
               </PublicRoute>
 
               <PrivateRoute path="/test" redirectTo="/auth">
-                <TestPage
-                  typeQuestions={typeQuestions}
-                  setTypeQuestions={setTypeQuestions}
-                  answers={answers}
-                  setAnswers={setAnswers}
-                ></TestPage>
+                <>
+                  <TestPage
+                    typeQuestions={typeQuestions}
+                    setTypeQuestions={setTypeQuestions}
+                    answers={answers}
+                    setAnswers={setAnswers}
+                  ></TestPage>
+                  <Footer />
+                </>
               </PrivateRoute>
 
-              <PublicRoute path="/results" redirectTo="/auth">
-                {<ResultsPage answers={answers} setAnswers={setAnswers} />}
-              </PublicRoute>
+              <PrivateRoute path="/results" redirectTo="/auth">
+                <>
+                  {<ResultsPage answers={answers} setAnswers={setAnswers} />}
+                  <Footer />
+                </>
+              </PrivateRoute>
 
               <PrivateRoute path="/useful-info" redirectTo="/auth">
-                <UsefullInfo />
+                <>
+                  <UsefullInfo />
+                  <Footer />
+                </>
               </PrivateRoute>
 
               <PublicRoute path="/contacts">
-                <ContactsPage />
+                <>
+                  <ContactsPage />
+                  <Footer />
+                </>
               </PublicRoute>
             </Suspense>
           </Switch>
           <ToastContainer transition={Flip} />
-          <Footer />
         </>
       )}
     </>
