@@ -52,6 +52,7 @@ const AuthForm = ({ onSubmit }) => {
     }
     return;
   };
+
   return (
     <form className={styles.formLogin}>
       <div className={styles.formField}>
