@@ -33,7 +33,7 @@ const AuthPage = () => {
           <h1 className={styles.homeLoginTitle}>Pro Test</h1>
           <p className={styles.homeText}>
             <span className={styles.homeAccent}>[</span> We will help you find
-            weak points in knowledge so that you can strengthen it. We will show
+            weak points <br/> in knowledge so that you can strengthen it. We will show
             you what is relevant to know for a
             <span className={styles.homeAccent}> QA Engineer</span> and will try
             to make the learning process more diverse_
