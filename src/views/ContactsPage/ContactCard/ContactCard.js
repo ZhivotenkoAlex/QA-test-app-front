@@ -37,13 +37,11 @@ const ContactCard = ({ members }) => {
             {descr}
           </p>
           <button
-            className={s.infoBtn}
+            className={s.backBtn}
             onClick={() => {
               history.push('/contacts');
             }}
-          >
-            Back to contacts
-          </button>
+          >⮝</button>
         </div>
       </div>
     </div>
