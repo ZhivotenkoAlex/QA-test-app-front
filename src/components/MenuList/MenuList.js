@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { getUserEmail } from '../../redux/authorization/authorization-selectors';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import s from '../UserMenu/UserMenu.module.css';
+import s from '../MenuList/MenuList.module.css';
 import styled from 'styled-components';
 import { logOut } from '../../redux/authorization/authorization-operations';
 import sprite from '../../img/sprite.svg';
@@ -19,6 +21,9 @@ const NAV = styled.nav`
 
 export default function UserMenu({ showMenu }) {
   const dispatch = useDispatch();
+  const userEmail = useSelector(getUserEmail);
+  const userName = userEmail?.split('@')[0];
+  const nameInAvatar = userName?.[0].toUpperCase();
 
   const clickMenuLink = e => {
     console.log('click ', showMenu);
@@ -52,7 +57,13 @@ export default function UserMenu({ showMenu }) {
         >
           Contacts
         </NavLink>
-        <NavLink to="/" onClick={() => dispatch(logOut())} className={s.link}>
+        <div className={s.avatar}>{nameInAvatar}</div>
+        <p className={s.name}>{userName}</p>
+        <NavLink
+          to="/"
+          onClick={() => dispatch(logOut())}
+          className={`${s.link} ${s.exit}`}
+        >
           <svg className={s.iconExit}>
             <use href={sprite + '#exit'} />
           </svg>
