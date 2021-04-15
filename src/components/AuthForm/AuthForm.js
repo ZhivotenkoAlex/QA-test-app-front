@@ -52,6 +52,14 @@ const AuthForm = ({ onSubmit }) => {
     }
     return;
   };
+
+  const handleEnter = e => {
+    if (e.key === 'Enter' && formValidation()) {
+      onSubmit({ email, password }, 'signIn');
+      formReset();
+    }
+  };
+
   return (
     <form className={styles.formLogin}>
       <div className={styles.formField}>
@@ -79,6 +87,7 @@ const AuthForm = ({ onSubmit }) => {
           id="password"
           placeholder="Password"
           onChange={e => setPassword(e.target.value)}
+          onKeyDown={handleEnter}
         />
         <label
           className={`${styles.formLabel} ${styles.formPassword}`}
