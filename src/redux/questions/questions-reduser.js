@@ -15,10 +15,16 @@ const rightAnswer = createReducer(null, {
 const curentTest = createReducer('', {
   [action.test]: (state, action) => (state = action.payload),
 });
+const visibleSpiner = createReducer(false, {
+  [action.getRightAnswersRequuest]: () => true,
+  [action.getRightAnswersSuccess]: () => false,
+  [action.getRightAnswersError]: () => false,
+});
 
 export default combineReducers({
   techQustions,
   theoryQustions,
   rightAnswer,
   curentTest,
+  visibleSpiner,
 });
