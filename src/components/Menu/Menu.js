@@ -15,7 +15,7 @@ export default function Menu() {
   return (
     <>
       <div className={`${s.avatar} ${s.mobile}`}>{nameInAvatar}</div>
-      <MenuList showMenu={showMenu} />
+      <MenuList setShowM={setshowMenu} showMenu={showMenu} />
 
       <button
         className={s.buttonMobile}
