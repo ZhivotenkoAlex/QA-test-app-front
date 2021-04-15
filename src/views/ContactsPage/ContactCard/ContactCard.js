@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Img } from 'react-image';
 import Loader from '../../../components/Loader/Loader';
@@ -8,6 +8,7 @@ import defaultImg from '../../../img/default-user.jpg';
 
 const ContactCard = ({ members }) => {
   const refToScroll = useRef();
+  const history = useHistory();
   const scrollToHashRef = () =>
     refToScroll.current?.scrollIntoView({ behavior: 'smooth' });
 
@@ -15,6 +16,7 @@ const ContactCard = ({ members }) => {
   const { imgUrl, title, name, descr } = members.find(
     member => member.id === Number.parseInt(memberId),
   );
+
   useEffect(() => {
     setTimeout(scrollToHashRef, 200);
   });
@@ -34,6 +36,14 @@ const ContactCard = ({ members }) => {
           <p className={s.onePersonText} id="descr">
             {descr}
           </p>
+          <button
+            className={s.infoBtn}
+            onClick={() => {
+              history.push('/contacts');
+            }}
+          >
+            Back to contacts
+          </button>
         </div>
       </div>
     </div>
