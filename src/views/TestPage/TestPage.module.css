@@ -276,10 +276,6 @@
     padding-bottom: 24px;
   }
 
-  .testingAnswers {
-    font-size: 11px;
-  }
-
   .testingQuestion {
     font-size: 10px;
     line-height: 1.2;
@@ -350,10 +346,6 @@
   .confirmContainer {
     padding-top: 24px;
     padding-bottom: 24px;
-  }
-
-  .testingAnswers {
-    font-size: 16px;
   }
 
   .slash {
