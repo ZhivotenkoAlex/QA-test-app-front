@@ -20,7 +20,7 @@ export const register = createAsyncThunk(
       const response = await axios.post('/auth/register', credentials);
 
       if (response.status === 201) {
-        token.set(response.data.token);
+        token.set(response.data.data.accessToken);
         return response.data;
       }
 
@@ -39,13 +39,23 @@ export const register = createAsyncThunk(
     }
   },
 );
+
 export const googleRegister = createAsyncThunk(
   'auth/googleRegister',
   async (credentials, thunkAPI) => {
-    token.set(credentials.token);
+    token.set(credentials.access);
     try {
+      // const { data } = await axios.get('auth/refresh-token');
+
+      // token.set(data.data.accessToken);
+
       const { data } = await axios.get('user/info');
-      return { ...data, token: credentials.token };
+
+      return {
+        refreshToken: credentials.token,
+        accessToken: credentials.access,
+        email: data.data.email,
+      };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -59,7 +69,7 @@ export const logIn = createAsyncThunk(
       const response = await axios.post('auth/login', credentials);
 
       if (response.status === 200) {
-        token.set(response.data.token);
+        token.set(response.data.data.accessToken);
         return response.data;
       }
 
@@ -79,18 +89,20 @@ export const logIn = createAsyncThunk(
   },
 );
 
-export const logOut = createAsyncThunk('auth/logOut', async () => {
+export const logOut = createAsyncThunk('auth/logOut', async (_, thunkAPI) => {
   try {
     await axios.post('/auth/logout');
     token.unset();
-  } catch (error) {}
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
 });
 
 export const fetchCurrentUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
+    const persistedToken = state.auth.refreshToken;
 
     if (persistedToken === null) {
       return thunkAPI.rejectWithValue();
@@ -98,8 +110,36 @@ export const fetchCurrentUser = createAsyncThunk(
 
     token.set(persistedToken);
     try {
-      const { data } = await axios.get('user/info');
-      return data;
+      const { data } = await axios.get('auth/refresh-token');
+
+      token.set(data.data.accessToken);
+
+      const response = await axios.get('user/info');
+
+      return { ...data, email: response.data.data.email };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+
+export const refreshTokens = createAsyncThunk(
+  'auth/tokens',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.refreshToken;
+
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue();
+    }
+
+    token.set(persistedToken);
+    try {
+      const { data } = await axios.get('auth/refresh-token');
+
+      token.set(data.data.accessToken);
+
+      return { ...data };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
