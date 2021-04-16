@@ -12,6 +12,7 @@ const getRightAnswersError = createAction('questions/getRightAnswersError');
 
 // const resultRightAnswer = createAction('questions/resultRightAnswer');
 const test = createAction('questions/test');
+const visibleSpiner = createAction('questions/visibleSpiner');
 
 const action = {
   fetchQuestionsRequuest,
@@ -22,5 +23,6 @@ const action = {
   getRightAnswersError,
   // resultRightAnswer,
   test,
+  visibleSpiner,
 };
 export default action;
