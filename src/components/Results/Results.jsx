@@ -77,7 +77,7 @@ export default function Results({ answers, setAnswers }) {
            
             style={{
               labels: {
-                fontSize: 23,
+                fontSize: 18,
                 fontWeight: 700,
                 fontFamily: 'Montserrat',
                 fill: '#000000',
@@ -97,7 +97,7 @@ export default function Results({ answers, setAnswers }) {
             labelComponent={
     <VictoryTooltip active
       labelPlacement="perpendicular"
-      pointerLength={40}
+      pointerLength={25}
       pointerWidth={0}
       flyoutPadding={0}
       labelComponent={
