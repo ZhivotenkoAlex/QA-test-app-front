@@ -53,7 +53,11 @@ export default function Results({ answers, setAnswers }) {
   return (
     <div className={s.mainConteiner}>
       <h2 className={s.title}>Results</h2>
-      <p className={s.textContent1}>[ Testing theory_]</p>
+      <p className={s.textContent1}>
+        {curentTest === 'tech'
+          ? '[ Technical training_]'
+          : '[ Testing theory_]'}
+      </p>
       <hr className={s.lineHorizontal} />
       <div className={s.imgGraf}>
         {visibleSpiner ? (
@@ -105,7 +109,7 @@ export default function Results({ answers, setAnswers }) {
       <p className={s.sentenceText}>{resultText.sentence}</p>
       <Link
         to={{
-          pathname: `/`,
+          pathname: `/test`,
         }}
       >
         <button className={s.btnTryAgain} onClick={onTryAgain}>
