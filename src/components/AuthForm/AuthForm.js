@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './AuthForm.module.css';
+import passwordVisible from '../../img/password-visible.png';
 
 const AuthForm = ({ onSubmit }) => {
+  const passwordInputRef = useRef();
+  console.log(passwordInputRef.current);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -85,8 +88,20 @@ const AuthForm = ({ onSubmit }) => {
           name="password"
           id="password"
           placeholder="Password"
+          ref={passwordInputRef}
           onChange={e => setPassword(e.target.value)}
         />
+        {
+          <img
+            src={passwordVisible}
+            alt="eye"
+            onClick={() => {
+              passwordInputRef.current.getAttribute('type')
+                ? passwordInputRef.current.removeAttribute('type')
+                : passwordInputRef.current.removeAttribute('type', 'password');
+            }}
+          />
+        }
         <label
           className={`${styles.formLabel} ${styles.formPassword}`}
           htmlFor="password"
