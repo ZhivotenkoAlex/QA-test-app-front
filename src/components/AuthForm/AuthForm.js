@@ -52,9 +52,15 @@ const AuthForm = ({ onSubmit }) => {
     }
     return;
   };
-
+  const hendlerFormEnter = e => {
+    if (e.key !== 'Enter') {
+      return;
+    }
+    e.target.name = 'signIn';
+    handleFormSubmit(e);
+  };
   return (
-    <form className={styles.formLogin}>
+    <form className={styles.formLogin} onKeyDown={e => hendlerFormEnter(e)}>
       <div className={styles.formField}>
         <input
           className={styles.formInput}
