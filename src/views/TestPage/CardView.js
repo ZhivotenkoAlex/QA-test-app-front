@@ -71,8 +71,8 @@ const CardView = ({
             className={`${index !== questionIndex ? s.hide : ''}`}
           >
             <ul action="">
-              {question.answers.map(answer => (
-                <li key={answer} className={s.item}>
+              {question.answers.map((answer, index) => (
+                <li key={`${answer}-${index}`} className={s.item}>
                   <label>
                     <input
                       className={s.testingInput}
