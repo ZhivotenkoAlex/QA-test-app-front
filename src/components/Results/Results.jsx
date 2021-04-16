@@ -63,10 +63,9 @@ export default function Results({ answers, setAnswers }) {
         {visibleSpiner ? (
           <PuffLoader color={'#FF6B01'} size={150} css={override} />
         ) : (
-            <VictoryPie
-         
-            labelRadius={150}
-            width={500}
+          <VictoryPie
+           labelRadius={150}
+              width={600}
             startAngle={90}
             endAngle={495}
             responsive={true}
@@ -77,9 +76,9 @@ export default function Results({ answers, setAnswers }) {
            
             style={{
               labels: {
-                fontSize: 18,
+                 fontFamily: 'Montserrat',
+                fontSize: 23,
                 fontWeight: 700,
-                fontFamily: 'Montserrat',
                 fill: '#000000',
               },
             }}
@@ -95,9 +94,9 @@ export default function Results({ answers, setAnswers }) {
               ]}
               
             labelComponent={
-    <VictoryTooltip active
+             <VictoryTooltip active
       labelPlacement="perpendicular"
-      pointerLength={25}
+      pointerLength={40}
       pointerWidth={0}
       flyoutPadding={0}
       labelComponent={
@@ -107,10 +106,10 @@ export default function Results({ answers, setAnswers }) {
           backgroundStyle={{ fill: "#f5f6fb" }}
           backgroundPadding={10}
         />
-      }
-    />
-  }
+            }
           />
+        }
+             />
         )}
       </div>
       <div className={s.resultTextContent}>
