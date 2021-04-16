@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import cat from '../../img/cat.svg';
 import s from './Results.module.css';
-import { VictoryPie, VictoryLabel,VictoryTooltip } from 'victory';
+import { VictoryPie, VictoryLabel } from 'victory';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import * as operation from '../../redux/questions/questions-operations';
@@ -64,21 +64,24 @@ export default function Results({ answers, setAnswers }) {
           <PuffLoader color={'#FF6B01'} size={150} css={override} />
         ) : (
           <VictoryPie
+
            labelRadius={150}
               width={600}
+
             startAngle={90}
             endAngle={495}
             responsive={true}
             animate={{
               duration: 1000,
             }}
-              colorScale={['#FF6B01', '#D7D7D7']}
-           
+            colorScale={['#FF6B01', '#D7D7D7']}
             style={{
               labels: {
+
                  fontFamily: 'Montserrat',
                 fontSize: 23,
                 fontWeight: 700,
+
                 fill: '#000000',
               },
             }}
@@ -91,9 +94,9 @@ export default function Results({ answers, setAnswers }) {
                 x: `${100 - percentRightAnswers}% Incorrect`,
                 y: 12 - rightAnswers,
               },
-              ]}
-              
+            ]}
             labelComponent={
+
              <VictoryTooltip active
       labelPlacement="perpendicular"
       pointerLength={40}
@@ -106,6 +109,7 @@ export default function Results({ answers, setAnswers }) {
           backgroundStyle={{ fill: "#f5f6fb" }}
           backgroundPadding={10}
         />
+
             }
           />
         }
