@@ -35,15 +35,11 @@ export const googleRegister = createAsyncThunk(
   async (credentials, thunkAPI) => {
     token.set(credentials.access);
     try {
-      // const { data } = await axios.get('auth/refresh-token');
-
-      // token.set(data.data.accessToken);
-
       const { data } = await axios.get('user/info');
 
       return {
         refreshToken: credentials.token,
-        accessToken: credentials.access,
+        // accessToken: credentials.access,
         email: data.data.email,
       };
     } catch (error) {
