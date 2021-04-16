@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import cat from '../../img/cat.svg';
 import s from './Results.module.css';
-import { VictoryPie, VictoryLabel } from 'victory';
+import { VictoryPie, VictoryLabel,VictoryTooltip } from 'victory';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import * as operation from '../../redux/questions/questions-operations';
@@ -63,7 +63,9 @@ export default function Results({ answers, setAnswers }) {
         {visibleSpiner ? (
           <PuffLoader color={'#FF6B01'} size={150} css={override} />
         ) : (
-          <VictoryPie
+            <VictoryPie
+         
+            labelRadius={150}
             width={500}
             startAngle={90}
             endAngle={495}
@@ -71,11 +73,13 @@ export default function Results({ answers, setAnswers }) {
             animate={{
               duration: 1000,
             }}
-            colorScale={['#FF6B01', '#D7D7D7']}
+              colorScale={['#FF6B01', '#D7D7D7']}
+           
             style={{
               labels: {
                 fontSize: 23,
-                fontWeight: 500,
+                fontWeight: 700,
+                fontFamily: 'Montserrat',
                 fill: '#000000',
               },
             }}
@@ -88,10 +92,24 @@ export default function Results({ answers, setAnswers }) {
                 x: `${100 - percentRightAnswers}% Incorrect`,
                 y: 12 - rightAnswers,
               },
-            ]}
+              ]}
+              
             labelComponent={
-              <VictoryLabel className="myLabel" textAnchor="middle" />
-            }
+    <VictoryTooltip active
+      labelPlacement="perpendicular"
+      pointerLength={40}
+      pointerWidth={0}
+      flyoutPadding={0}
+      labelComponent={
+        <VictoryLabel
+          verticalAnchor="middle"
+          dy={-8}
+          backgroundStyle={{ fill: "#f5f6fb" }}
+          backgroundPadding={10}
+        />
+      }
+    />
+  }
           />
         )}
       </div>
