@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://safe-bayou-94848.herokuapp.com/api';
@@ -24,8 +25,17 @@ export const register = createAsyncThunk(
       }
 
       return thunkAPI.rejectWithValue(response.statusText);
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+    } catch ({ response }) {
+      toast.error(response.data.message, {
+        position: 'top-center',
+        autoClose: 1800,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return thunkAPI.rejectWithValue(response);
     }
   },
 );
@@ -53,9 +63,18 @@ export const logIn = createAsyncThunk(
         return response.data;
       }
 
-      return thunkAPI.rejectWithValue(response.statusText);
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue({ response });
+    } catch ({ response }) {
+      toast.error(response.data.message, {
+        position: 'top-center',
+        autoClose: 1800,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return thunkAPI.rejectWithValue(response);
     }
   },
 );
