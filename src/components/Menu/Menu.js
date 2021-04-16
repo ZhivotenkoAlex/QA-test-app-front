@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import MenuList from '../MenuList/MenuList';
 import s from '../Menu/Menu.module.css';
 import sprite from '../../img/sprite.svg';
-import { Avatar } from '@material-ui/core';
+// import { Avatar } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { getUserEmail } from '../../redux/authorization/authorization-selectors';
 
