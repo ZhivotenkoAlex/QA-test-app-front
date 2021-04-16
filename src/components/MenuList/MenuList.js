@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { getUserEmail } from '../../redux/authorization/authorization-selectors';
 import { useDispatch } from 'react-redux';
@@ -26,7 +26,7 @@ export default function UserMenu({ showMenu, setShowM }) {
   const nameInAvatar = userName?.[0].toUpperCase();
 
   //забрати скрол якщо відкрите мобільне меню
-  document.body.style.overflowY = showMenu ? 'hidden' : 'scroll';
+  document.body.classList = showMenu ? s.noscroll : s.scroll;
 
   const clickMenuLink = e => {
     setShowM(!showMenu);
