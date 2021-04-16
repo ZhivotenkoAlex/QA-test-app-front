@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getUserEmail } from '../../redux/authorization/authorization-selectors';
 import { useDispatch } from 'react-redux';
@@ -10,23 +10,26 @@ import sprite from '../../img/sprite.svg';
 
 const NAV = styled.nav`
   @media (max-width: 767px) {
-    transform: ${({ showMenu }) =>
-      showMenu ? 'translateY(1%)' : 'translateY(0)'};
   }
   opacity: ${({ showMenu }) => (showMenu ? '1' : '0')};
+  display: ${({ showMenu }) => (showMenu ? 'block' : 'none')};
   @media (min-width: 768px) {
     opacity: 1;
+    display: flex;
   }
 `;
 
-export default function UserMenu({ showMenu }) {
+export default function UserMenu({ showMenu, setShowM }) {
   const dispatch = useDispatch();
   const userEmail = useSelector(getUserEmail);
   const userName = userEmail?.split('@')[0];
   const nameInAvatar = userName?.[0].toUpperCase();
 
+  //забрати скрол якщо відкрите мобільне меню
+  document.body.style.overflowY = showMenu ? 'hidden' : 'scroll';
+
   const clickMenuLink = e => {
-    console.log('click ', showMenu);
+    setShowM(!showMenu);
   };
 
   return (
@@ -35,8 +38,8 @@ export default function UserMenu({ showMenu }) {
         <NavLink
           exact
           to="/"
-          className={`${s.link} ${s.current}`}
-          activeClassName={s.activeLink}
+          className={s.link}
+          activeClassName={`${s.activeLink} ${s.current}`}
           onClick={clickMenuLink}
         >
           Home
@@ -45,7 +48,8 @@ export default function UserMenu({ showMenu }) {
           exact
           to="/useful-info"
           className={s.link}
-          activeClassName={s.activeLink}
+          activeClassName={`${s.activeLink} ${s.current}`}
+          onClick={clickMenuLink}
         >
           Materials
         </NavLink>
@@ -53,7 +57,8 @@ export default function UserMenu({ showMenu }) {
           exact
           to="/contacts"
           className={s.link}
-          activeClassName={s.activeLink}
+          activeClassName={`${s.activeLink} ${s.current}`}
+          onClick={clickMenuLink}
         >
           Contacts
         </NavLink>

@@ -7,8 +7,8 @@ import { googleRegister } from '../../redux/authorization/authorization-operatio
 const GoogleRedirect = () => {
   const location = useLocation();
   const dispatch = useDispatch();
-  const token = queryString.parse(location.search);
-  dispatch(googleRegister(token));
+  const tokens = queryString.parse(location.search);
+  dispatch(googleRegister(tokens));
   return <Loader />;
 };
 export default GoogleRedirect;
