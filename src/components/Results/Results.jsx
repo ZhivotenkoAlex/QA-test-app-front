@@ -64,7 +64,10 @@ export default function Results({ answers, setAnswers }) {
           <PuffLoader color={'#FF6B01'} size={150} css={override} />
         ) : (
           <VictoryPie
-            width={500}
+
+           labelRadius={150}
+              width={600}
+
             startAngle={90}
             endAngle={495}
             responsive={true}
@@ -74,8 +77,11 @@ export default function Results({ answers, setAnswers }) {
             colorScale={['#FF6B01', '#D7D7D7']}
             style={{
               labels: {
+
+                 fontFamily: 'Montserrat',
                 fontSize: 23,
-                fontWeight: 500,
+                fontWeight: 700,
+
                 fill: '#000000',
               },
             }}
@@ -90,9 +96,24 @@ export default function Results({ answers, setAnswers }) {
               },
             ]}
             labelComponent={
-              <VictoryLabel className="myLabel" textAnchor="middle" />
+
+             <VictoryTooltip active
+      labelPlacement="perpendicular"
+      pointerLength={40}
+      pointerWidth={0}
+      flyoutPadding={0}
+      labelComponent={
+        <VictoryLabel
+          verticalAnchor="middle"
+          dy={-8}
+          backgroundStyle={{ fill: "#f5f6fb" }}
+          backgroundPadding={10}
+        />
+
             }
           />
+        }
+             />
         )}
       </div>
       <div className={s.resultTextContent}>
