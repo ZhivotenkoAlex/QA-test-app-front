@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import cat from '../../img/cat.svg';
 import s from './Results.module.css';
-import { VictoryPie, VictoryLabel } from 'victory';
+import { VictoryPie, VictoryLabel,VictoryTooltip  } from 'victory';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import * as operation from '../../redux/questions/questions-operations';
