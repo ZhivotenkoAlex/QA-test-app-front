@@ -7,7 +7,6 @@ import passwordVisible from '../../img/password-visible.png';
 
 const AuthForm = ({ onSubmit }) => {
   const passwordInputRef = useRef();
-  console.log(passwordInputRef.current);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -94,11 +93,12 @@ const AuthForm = ({ onSubmit }) => {
         {
           <img
             src={passwordVisible}
+            width="30px"
             alt="eye"
             onClick={() => {
               passwordInputRef.current.getAttribute('type')
                 ? passwordInputRef.current.removeAttribute('type')
-                : passwordInputRef.current.removeAttribute('type', 'password');
+                : passwordInputRef.current.setAttribute('type', 'password');
             }}
           />
         }
