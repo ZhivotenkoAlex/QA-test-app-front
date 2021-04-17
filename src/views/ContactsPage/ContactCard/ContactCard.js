@@ -5,6 +5,7 @@ import { Img } from 'react-image';
 import Loader from '../../../components/Loader/Loader';
 import s from './ContactCard.module.css';
 import defaultImg from '../../../img/default-user.jpg';
+import sprite from '../../../img/sprite.svg';
 
 const ContactCard = ({ members }) => {
   const refToScroll = useRef();
@@ -41,7 +42,9 @@ const ContactCard = ({ members }) => {
             onClick={() => {
               history.push('/contacts');
             }}
-          >⮝</button>
+          ><svg className={s.backIcon}>
+                  <use href={sprite + '#arrow-up'}></use>
+                </svg></button>
         </div>
       </div>
     </div>
