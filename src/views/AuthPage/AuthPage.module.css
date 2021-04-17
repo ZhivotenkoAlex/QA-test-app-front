@@ -51,7 +51,7 @@
 
 @media screen and (max-width: 767px) {
   .homeLogin {
-    padding: 39px 0 50px 0;
+    padding: 39px 0 106px 0;
   }
 
   .homeLoginTitle {
@@ -85,7 +85,7 @@
 
 @media screen and (min-width: 768px) {
   .homeLogin {
-    padding: 80px 94px 70px 94px;
+    padding: 80px 94px 126px 94px;
   }
 
   .homeLoginTitle {
@@ -124,7 +124,7 @@
   .homeLogin {
     display: flex;
     justify-content: space-between;
-    padding: 99px 105px;
+    padding: 99px 105px 155px 105px;
   }
 
   .homeLoginTitle {

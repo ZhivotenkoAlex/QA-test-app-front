@@ -77,7 +77,7 @@
 
 @media screen and (max-width: 767px) {
   .team {
-    padding: 40px 20px 56px 20px;
+    padding: 40px 20px 112px 20px;
   }
   .teamTitle {
     font-size: 18px;
@@ -107,7 +107,7 @@
 
 @media screen and (min-width: 768px) {
   .team {
-    padding: 41px 22px 76px 22px;
+    padding: 41px 22px 132px 22px;
   }
   .teamTitle {
     font-size: 22px;
@@ -137,7 +137,7 @@
 
 @media screen and (min-width: 1280px) {
   .team {
-    padding: 40px 20px 65px 20px;
+    padding: 40px 20px 121px 20px;
   }
 
   .teamItem {

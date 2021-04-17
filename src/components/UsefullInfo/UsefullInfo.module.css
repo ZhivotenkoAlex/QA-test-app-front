@@ -39,7 +39,7 @@
 @media screen and (max-width: 767px) {
   .materials {
     max-width: 320px;
-    padding: 40px 20px;
+    padding: 40px 20px 167px 20px;
     background-image: url(../../img/cactus_mob.jpg);
   }
   .materialsTitle {
@@ -64,7 +64,7 @@
 @media screen and (min-width: 768px) {
   .materials {
     width: 768px;
-    padding: 119px 115px 472px 115px;
+    padding: 119px 115px 528px 115px;
     background-image: url(../../img/cactus_tabl.jpg);
     background-size: cover;
   }
@@ -93,7 +93,7 @@
 @media screen and (min-width: 1280px) {
   .materials {
     width: 1280px;
-    padding: 98px 190px 262px 190px;
+    padding: 98px 190px 318px 190px;
     background-image: url(../../img/cactus_desc.jpg);
     background-size: cover;
   }
