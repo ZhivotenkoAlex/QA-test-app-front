@@ -83,6 +83,10 @@
   transform: scale(1.06);
 }
 
+.backIcon {
+  fill: var(--primaryWhiteColor);
+}
+
 @media screen and (max-width: 767px) {
   .onePersonContainer {
     width: 280px;
@@ -122,6 +126,10 @@
     width: 30px;
     height: 30px;
     font-size: 15px;
+  }
+  .backIcon {
+    width: 15px;
+    height: 15px;
   }
 }
 
@@ -164,6 +172,10 @@
     width: 60px;
     height: 60px;
     font-size: 28px;
+  }
+  .backIcon {
+    width: 30px;
+    height: 30px;
   }
 }
 
@@ -209,5 +221,9 @@
     width: 70px;
     height: 70px;
     font-size: 30px;
+  }
+  .backIcon {
+    width: 35px;
+    height: 35px;
   }
 }

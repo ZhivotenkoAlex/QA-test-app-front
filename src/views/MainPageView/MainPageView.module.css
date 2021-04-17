@@ -86,7 +86,7 @@
 
 @media screen and (max-width: 767px) {
   .home {
-    padding: 30px 20px 33px 20px;
+    padding: 30px 20px 89px 20px;
   }
 
   .homeTitle {
@@ -130,7 +130,7 @@
 
 @media screen and (min-width: 768px) {
   .home {
-    padding: 80px 58px 112px 58px;
+    padding: 80px 58px 168px 58px;
   }
 
   .homeTitle {
@@ -175,7 +175,7 @@
 
 @media screen and (min-width: 1280px) {
   .home {
-    padding: 122px 230px 114px 230px;
+    padding: 122px 230px 170px 230px;
   }
 
   .homeCompany {
