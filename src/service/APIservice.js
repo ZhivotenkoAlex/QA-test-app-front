@@ -1,20 +1,17 @@
 import axios from 'axios';
 
 async function fetchTechQuestions() {
-  const response = await fetch(
-    'https://safe-bayou-94848.herokuapp.com/api/test-tech',
-  );
+  const { data } = await axios.get('/test-tech');
 
-  return await response.json();
+  return data;
 }
 
 async function fetchTheoryQuestions() {
-  const response = await fetch(
-    'https://safe-bayou-94848.herokuapp.com/api/test-theory',
-  );
+  const { data } = await axios.get('/test-theory');
 
-  return await response.json();
+  return data;
 }
+
 async function sendChekResults(result, curentTest) {
   const { data } = await axios.post(
     curentTest === 'tech'
@@ -22,6 +19,7 @@ async function sendChekResults(result, curentTest) {
       : '/test-theory/right-answers',
     result,
   );
+
   return data.data.rightAnswer;
 }
 

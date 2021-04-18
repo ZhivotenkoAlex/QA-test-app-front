@@ -56,13 +56,14 @@ function App() {
     error => {
       const status = error.response ? error.response.status : null;
 
-      if (status === 401 && error.response.config.headers.Authorization) {
-        dispatch(refreshTokens(error.config));
+      if (status === 401 && !error.config._retry) {
+        error.config._retry = true;
+
+        dispatch(refreshTokens());
 
         error.config.headers['Authorization'] =
           axios.defaults.headers.common.Authorization;
         error.config.baseURL = undefined;
-
         return axios.request(error.config);
       }
 

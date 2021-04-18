@@ -98,6 +98,7 @@ export const authSlice = createSlice({
       state.isLoggedIn = true;
     },
     [fetchCurrentUser.rejected](state) {
+      state.refreshToken = null;
       state.isFetchingCurrentUser = false;
     },
     [refreshTokens.fulfilled](state, action) {
@@ -105,6 +106,9 @@ export const authSlice = createSlice({
       // state.accessToken = action.payload.data.accessToken;
     },
     [refreshTokens.rejected](state, action) {
+      state.user = { email: null };
+      state.refreshToken = null;
+      state.isLoggedIn = false;
       state.refreshError = action.payload;
     },
   },

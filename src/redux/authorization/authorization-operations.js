@@ -126,6 +126,7 @@ export const refreshTokens = createAsyncThunk(
     const persistedToken = state.auth.refreshToken;
 
     if (persistedToken === null) {
+      token.unset();
       return thunkAPI.rejectWithValue();
     }
 
@@ -137,6 +138,7 @@ export const refreshTokens = createAsyncThunk(
 
       return { ...data };
     } catch (error) {
+      token.unset();
       return thunkAPI.rejectWithValue(error.message);
     }
   },
