@@ -70,75 +70,7 @@ function App() {
     },
   );
 
-  // return (
-  //   <>
-  //     {isFetchingCurrentUser ? (
-  //       <Loader />
-  //     ) : (
-  //       <>
-  //         <Navigation />
-  //         <Switch>
-  //           <Suspense fallback={<Loader />}>
-  //             <PrivateRoute path="/" exact redirectTo="/auth">
-  //               <>
-  //                 <MainPageView
-  //                   setTypeQuestions={setTypeQuestions}
-  //                 ></MainPageView>
-  //                 <Footer />
-  //               </>
-  //             </PrivateRoute>
-
-  //             <PublicRoute path="/auth" restricted redirectTo="/">
-  //               <>
-  //                 <AuthPage />
-  //                 <Footer />
-  //               </>
-  //             </PublicRoute>
-
-  //             <PublicRoute path="/google-redirect" restricted redirectTo="/">
-  //               <GoogleRedirect />
-  //             </PublicRoute>
-
-  //             <PrivateRoute path="/test" redirectTo="/auth">
-  //               <>
-  //                 <TestPage
-  //                   typeQuestions={typeQuestions}
-  //                   setTypeQuestions={setTypeQuestions}
-  //                   answers={answers}
-  //                   setAnswers={setAnswers}
-  //                 ></TestPage>
-  //                 <Footer />
-  //               </>
-  //             </PrivateRoute>
-
-  //             <PrivateRoute path="/results" redirectTo="/auth">
-  //               <>
-  //                 {<ResultsPage answers={answers} setAnswers={setAnswers} />}
-  //                 <Footer />
-  //               </>
-  //             </PrivateRoute>
-
-  //             <PrivateRoute path="/useful-info" redirectTo="/auth">
-  //               <>
-  //                 <UsefullInfo />
-  //                 <Footer />
-  //               </>
-  //             </PrivateRoute>
-
-  //             <PublicRoute path="/contacts">
-  //               <>
-  //                 <ContactsPage />
-  //                 <Footer />
-  //               </>
-  //             </PublicRoute>
-  //           </Suspense>
-  //         </Switch>
-  //         <ToastContainer transition={Flip} />
-  //       </>
-  //     )}
-  //   </>
-  // );
-   return (
+  return (
     <>
       {isFetchingCurrentUser ? (
         <Loader />
@@ -152,12 +84,14 @@ function App() {
                   <MainPageView
                     setTypeQuestions={setTypeQuestions}
                   ></MainPageView>
-                  </>
+                  <Footer />
+                </>
               </PrivateRoute>
 
               <PublicRoute path="/auth" restricted redirectTo="/">
                 <>
                   <AuthPage />
+                  <Footer />
                 </>
               </PublicRoute>
 
@@ -173,31 +107,33 @@ function App() {
                     answers={answers}
                     setAnswers={setAnswers}
                   ></TestPage>
-               </>
+                  <Footer />
+                </>
               </PrivateRoute>
 
               <PrivateRoute path="/results" redirectTo="/auth">
                 <>
                   {<ResultsPage answers={answers} setAnswers={setAnswers} />}
-                  </>
+                  <Footer />
+                </>
               </PrivateRoute>
 
               <PrivateRoute path="/useful-info" redirectTo="/auth">
                 <>
                   <UsefullInfo />
-               </>
+                  <Footer />
+                </>
               </PrivateRoute>
 
               <PublicRoute path="/contacts">
                 <>
                   <ContactsPage />
+                  <Footer />
                 </>
               </PublicRoute>
             </Suspense>
-             </Switch>
-             
-             <ToastContainer transition={Flip} />
-          <Footer />
+          </Switch>
+          <ToastContainer transition={Flip} />
         </>
       )}
     </>
