@@ -195,9 +195,10 @@ function App() {
               </PublicRoute>
             </Suspense>
              </Switch>
-             <Footer />
+             
              <ToastContainer transition={Flip} />
-           </>
+          <Footer />
+        </>
       )}
     </>
   );
