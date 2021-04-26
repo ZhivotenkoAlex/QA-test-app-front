@@ -15,6 +15,7 @@ const VerificationPage = () => {
 
   useEffect(() => {
     dispatch(emailVerification(verificationToken));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const isEmailVerify = useSelector(getEmailVerifyResponse);
