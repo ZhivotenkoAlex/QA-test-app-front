@@ -6,12 +6,12 @@ import {
   fetchCurrentUser,
   googleRegister,
   refreshTokens,
+  emailVerification,
 } from './authorization-operations';
 
 const initialState = {
   user: { email: null },
   refreshToken: null,
-  // accessToken: null,
   isFetchingCurrentUser: false,
   isLoggedIn: false,
   registerPending: false,
@@ -21,6 +21,7 @@ const initialState = {
   logOutPending: false,
   logOutError: null,
   refreshError: null,
+  emailVerifyResponse: null,
 };
 
 export const authSlice = createSlice({
@@ -33,14 +34,20 @@ export const authSlice = createSlice({
     },
     [register.fulfilled](state, action) {
       state.user = { email: action.payload.data.user.email };
-      state.refreshToken = action.payload.data.refreshToken;
-      // state.accessToken = action.payload.data.accessToken;
-      state.isLoggedIn = true;
       state.registerPending = false;
     },
     [register.rejected](state, action) {
       state.registerPending = false;
       state.registerError = action.payload;
+    },
+    [emailVerification.pending](state) {
+      state.emailVerifyResponse = null;
+    },
+    [emailVerification.fulfilled](state, action) {
+      state.emailVerifyResponse = action.payload.message;
+    },
+    [emailVerification.rejected](state, action) {
+      state.emailVerifyResponse = action.payload.message;
     },
     [googleRegister.pending](state) {
       state.registerPending = true;
@@ -49,7 +56,6 @@ export const authSlice = createSlice({
     [googleRegister.fulfilled](state, action) {
       state.user = { email: action.payload.email };
       state.refreshToken = action.payload.refreshToken;
-      // state.accessToken = action.payload.accessToken;
       state.isLoggedIn = true;
       state.registerPending = false;
     },
@@ -64,7 +70,6 @@ export const authSlice = createSlice({
     [logIn.fulfilled](state, action) {
       state.user = { email: action.payload.data.user.email };
       state.refreshToken = action.payload.data.refreshToken;
-      // state.accessToken = action.payload.data.accessToken;
       state.isLoggedIn = true;
       state.logInPending = false;
     },
@@ -79,7 +84,6 @@ export const authSlice = createSlice({
     [logOut.fulfilled](state) {
       state.user = { email: null };
       state.refreshToken = null;
-      // state.accessToken = null;
       state.isLoggedIn = false;
       state.logOutPending = false;
     },
@@ -93,7 +97,6 @@ export const authSlice = createSlice({
     [fetchCurrentUser.fulfilled](state, action) {
       state.user = { email: action.payload.email };
       state.refreshToken = action.payload.data.refreshToken;
-      // state.accessToken = action.payload.data.accessToken;
       state.isFetchingCurrentUser = false;
       state.isLoggedIn = true;
     },
@@ -103,7 +106,6 @@ export const authSlice = createSlice({
     },
     [refreshTokens.fulfilled](state, action) {
       state.refreshToken = action.payload.data.refreshToken;
-      // state.accessToken = action.payload.data.accessToken;
     },
     [refreshTokens.rejected](state, action) {
       state.user = { email: null };
