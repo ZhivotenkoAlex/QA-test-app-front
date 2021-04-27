@@ -11,3 +11,5 @@ export const getRegisterPending = state => state.auth.registerPending;
 export const getRegisterError = state => state.auth.registerError;
 
 export const getLogOutPending = state => state.auth.logOutPending;
+
+export const getEmailVerifyResponse = state => state.auth.emailVerifyResponse;

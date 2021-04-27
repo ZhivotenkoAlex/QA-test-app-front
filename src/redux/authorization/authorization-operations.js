@@ -20,7 +20,6 @@ export const register = createAsyncThunk(
       const response = await axios.post('/auth/register', credentials);
 
       if (response.status === 201) {
-        token.set(response.data.data.accessToken);
         return response.data;
       }
 
@@ -40,6 +39,18 @@ export const register = createAsyncThunk(
   },
 );
 
+export const emailVerification = createAsyncThunk(
+  'auth/emailVerify',
+  async (verificationToken, thunkAPI) => {
+    try {
+      const { data } = await axios.post('/auth/verify', { verificationToken });
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  },
+);
+
 export const googleRegister = createAsyncThunk(
   'auth/googleRegister',
   async (credentials, thunkAPI) => {
@@ -49,7 +60,6 @@ export const googleRegister = createAsyncThunk(
 
       return {
         refreshToken: credentials.token,
-        // accessToken: credentials.access,
         email: data.data.email,
       };
     } catch (error) {

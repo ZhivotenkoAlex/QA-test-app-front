@@ -15,6 +15,7 @@ import {
 import Navigation from './components/Navigation/Navigation';
 import Footer from './components/Footer';
 import GoogleRedirect from './components/GoogleRedirect';
+import VerificationPage from './views/VerificationPage/VerificationPage';
 
 const MainPageView = lazy(() =>
   import(
@@ -98,6 +99,13 @@ function App() {
 
               <PublicRoute path="/google-redirect" restricted redirectTo="/">
                 <GoogleRedirect />
+              </PublicRoute>
+
+              <PublicRoute path="/verify" restricted redirectTo="/">
+                <>
+                  <VerificationPage />
+                  {/* <Footer /> */}
+                </>
               </PublicRoute>
 
               <PrivateRoute path="/test" redirectTo="/auth">
