@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import {
   logIn,
@@ -7,6 +8,8 @@ import {
 import {
   getLogInPending,
   getRegisterPending,
+  getUserEmail,
+  getRegisterSucceed,
 } from '../../redux/authorization/authorization-selectors';
 
 import styles from './AuthPage.module.css';
@@ -17,6 +20,8 @@ const AuthPage = () => {
   const dispatch = useDispatch();
   const logInPending = useSelector(getLogInPending);
   const registerPending = useSelector(getRegisterPending);
+  const registredUserEmail = useSelector(getUserEmail);
+  const registerSucceed = useSelector(getRegisterSucceed);
 
   // submit function
   const handleSubmint = async (credentials, targetName) => {
@@ -33,6 +38,18 @@ const AuthPage = () => {
         break;
     }
   };
+
+  if (registerSucceed) {
+    toast.info(`Check ${registredUserEmail} for verification letter`, {
+      position: 'top-center',
+      autoClose: 6000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
 
   return (
     <div className={styles.container}>
