@@ -15,6 +15,7 @@ const initialState = {
   isFetchingCurrentUser: false,
   isLoggedIn: false,
   registerPending: false,
+  registerSucceed: null,
   registerError: null,
   logInPending: false,
   logInError: null,
@@ -31,16 +32,20 @@ export const authSlice = createSlice({
     [register.pending](state) {
       state.registerPending = true;
       state.registerError = null;
+      state.registerSucceed = null;
     },
     [register.fulfilled](state, action) {
       state.user = { email: action.payload.data.user.email };
       state.registerPending = false;
+      state.registerSucceed = true;
     },
     [register.rejected](state, action) {
       state.registerPending = false;
+      state.registerSucceed = null;
       state.registerError = action.payload;
     },
     [emailVerification.pending](state) {
+      state.registerSucceed = null;
       state.emailVerifyResponse = null;
     },
     [emailVerification.fulfilled](state, action) {
@@ -50,6 +55,7 @@ export const authSlice = createSlice({
       state.emailVerifyResponse = action.payload.message;
     },
     [googleRegister.pending](state) {
+      state.registerSucceed = null;
       state.registerPending = true;
       state.registerError = null;
     },
@@ -64,6 +70,7 @@ export const authSlice = createSlice({
       state.registerError = action.payload;
     },
     [logIn.pending](state) {
+      state.registerSucceed = null;
       state.logInPending = true;
       state.logInError = null;
     },
@@ -78,6 +85,7 @@ export const authSlice = createSlice({
       state.logInError = action.payload;
     },
     [logOut.pending](state) {
+      state.registerSucceed = null;
       state.logOutPending = true;
       state.logOutError = null;
     },
@@ -92,6 +100,7 @@ export const authSlice = createSlice({
       state.logOutError = action.payload;
     },
     [fetchCurrentUser.pending](state) {
+      state.registerSucceed = null;
       state.isFetchingCurrentUser = true;
     },
     [fetchCurrentUser.fulfilled](state, action) {
@@ -105,6 +114,7 @@ export const authSlice = createSlice({
       state.isFetchingCurrentUser = false;
     },
     [refreshTokens.fulfilled](state, action) {
+      state.registerSucceed = null;
       state.refreshToken = action.payload.data.refreshToken;
     },
     [refreshTokens.rejected](state, action) {
