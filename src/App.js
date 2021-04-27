@@ -104,7 +104,7 @@ function App() {
               <PublicRoute path="/verify" restricted redirectTo="/">
                 <>
                   <VerificationPage />
-                  {/* <Footer /> */}
+                  <Footer />
                 </>
               </PublicRoute>
 
